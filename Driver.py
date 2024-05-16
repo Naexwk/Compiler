@@ -10,7 +10,6 @@ def main(argv):
     stream = CommonTokenStream(lexer)
     parser = littleDuckParser(stream)
     tree = parser.programa()
-    #Trees.toStringTree(tree, None, parser)
     #print(tree.toStringTree(recog=parser))
 
 if __name__ == '__main__':

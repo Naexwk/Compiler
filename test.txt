@@ -1,0 +1,23 @@
+program test_3;
+
+var a, b, c : int;
+
+void func_suma (param1 : int, param2 : int) [
+    var funcVar : int;
+    {funcVar = param1 + param2;}
+];
+
+void func_resta (param1 : int, param2 : int) [
+    var funcVar : int;
+    {funcVar = param1 - param2;}
+];
+
+main {
+    a = 0;
+    b = 4;
+    c = 2;
+    func_suma (a, b);
+    func_resta (b, c);
+}
+
+end
