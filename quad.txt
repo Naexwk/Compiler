@@ -1,0 +1,15 @@
+program quad;
+
+var a, b, c: float;
+
+void a (param1 : int, param2 : int) [
+    var funcVar : int;
+    {}
+];
+
+main {
+    if (0){
+
+    };
+}
+end

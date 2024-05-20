@@ -1,6 +1,6 @@
 program test_3;
 
-var a, b, c : int;
+var a, b, c : int; f : float;
 
 void func_suma (param1 : int, param2 : int) [
     var funcVar : int;

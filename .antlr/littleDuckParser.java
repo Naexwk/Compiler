@@ -32,9 +32,9 @@ public class littleDuckParser extends Parser {
 		RULE_mas_f_call = 16, RULE_print = 17, RULE_opc_print = 18, RULE_mas_print = 19, 
 		RULE_funcs = 20, RULE_opc_funcs = 21, RULE_mas_opc_funcs = 22, RULE_next_opc_funcs = 23, 
 		RULE_vars_funcs = 24, RULE_cte = 25, RULE_expresion = 26, RULE_opc_expresion = 27, 
-		RULE_exp = 28, RULE_mas_exp = 29, RULE_signo = 30, RULE_termino = 31, 
+		RULE_exp = 28, RULE_mas_exp = 29, RULE_exp_signo = 30, RULE_termino = 31, 
 		RULE_mas_termino = 32, RULE_signo_factor = 33, RULE_factor = 34, RULE_opc_factor = 35, 
-		RULE_opc_signo = 36, RULE_opc_factor_prime = 37;
+		RULE_opc_signo = 36, RULE_signo = 37, RULE_opc_factor_prime = 38;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"programa", "opc_vars", "optional_funcs", "vars", "mas_vars", "mas_dec_vars", 
@@ -42,8 +42,8 @@ public class littleDuckParser extends Parser {
 			"else", "cycle", "f_call", "opc_f_call", "mas_f_call", "print", "opc_print", 
 			"mas_print", "funcs", "opc_funcs", "mas_opc_funcs", "next_opc_funcs", 
 			"vars_funcs", "cte", "expresion", "opc_expresion", "exp", "mas_exp", 
-			"signo", "termino", "mas_termino", "signo_factor", "factor", "opc_factor", 
-			"opc_signo", "opc_factor_prime"
+			"exp_signo", "termino", "mas_termino", "signo_factor", "factor", "opc_factor", 
+			"opc_signo", "signo", "opc_factor_prime"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -133,14 +133,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_programa; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterPrograma(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitPrograma(this);
-		}
 	}
 
 	public final ProgramaContext programa() throws RecognitionException {
@@ -149,27 +141,32 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(76);
+			setState(78);
 			match(T__0);
-			setState(77);
+			setState(79);
 			((ProgramaContext)_localctx).ID = match(ID);
 
 			program.variableTable["owner"] = (((ProgramaContext)_localctx).ID!=null?((ProgramaContext)_localctx).ID.getText():null)
 
-			setState(79);
-			match(T__1);
-			setState(80);
-			opc_vars();
 			setState(81);
-			optional_funcs();
+			match(T__1);
 			setState(82);
-			match(T__2);
+			opc_vars();
 			setState(83);
-			body();
+			optional_funcs();
 			setState(84);
+			match(T__2);
+			setState(85);
+			body();
+			setState(86);
 			match(T__3);
 
+			program.insertQuad('end', None, None, None)
 			print(program.variableTable)
+			print(program.quadruples)
+			print(program.stack_operands)
+			print(program.stack_operator)
+			print(program.stack_jumps)
 
 			}
 		}
@@ -193,21 +190,13 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_opc_vars; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOpc_vars(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOpc_vars(this);
-		}
 	}
 
 	public final Opc_varsContext opc_vars() throws RecognitionException {
 		Opc_varsContext _localctx = new Opc_varsContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_opc_vars);
 		try {
-			setState(90);
+			setState(92);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__4:
@@ -216,7 +205,7 @@ public class littleDuckParser extends Parser {
 
 				program.currentLevel = "global"
 
-				setState(88);
+				setState(90);
 				vars();
 				}
 				break;
@@ -253,29 +242,21 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_optional_funcs; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOptional_funcs(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOptional_funcs(this);
-		}
 	}
 
 	public final Optional_funcsContext optional_funcs() throws RecognitionException {
 		Optional_funcsContext _localctx = new Optional_funcsContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_optional_funcs);
 		try {
-			setState(96);
+			setState(98);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__19:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(92);
+				setState(94);
 				funcs();
-				setState(93);
+				setState(95);
 				optional_funcs();
 				}
 				break;
@@ -316,14 +297,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_vars; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterVars(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitVars(this);
-		}
 	}
 
 	public final VarsContext vars() throws RecognitionException {
@@ -332,26 +305,23 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(98);
+			setState(100);
 			match(T__4);
-			setState(99);
+			setState(101);
 			((VarsContext)_localctx).ID = match(ID);
 
-			if not program.variableExists((((VarsContext)_localctx).ID!=null?((VarsContext)_localctx).ID.getText():null)):
-			    program.tempVarDeclarations.append((((VarsContext)_localctx).ID!=null?((VarsContext)_localctx).ID.getText():null))
-			else:
-			    print("Variable " + (((VarsContext)_localctx).ID!=null?((VarsContext)_localctx).ID.getText():null) + " already declared")
+			program.declareNewVariable((((VarsContext)_localctx).ID!=null?((VarsContext)_localctx).ID.getText():null))
 
-			setState(101);
-			mas_vars();
-			setState(102);
-			match(T__5);
 			setState(103);
-			type();
+			mas_vars();
 			setState(104);
+			match(T__5);
+			setState(105);
+			type();
+			setState(106);
 			match(T__1);
 			program.clearTempVarDeclaration()
-			setState(106);
+			setState(108);
 			mas_dec_vars();
 			}
 		}
@@ -377,37 +347,26 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mas_vars; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterMas_vars(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitMas_vars(this);
-		}
 	}
 
 	public final Mas_varsContext mas_vars() throws RecognitionException {
 		Mas_varsContext _localctx = new Mas_varsContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_mas_vars);
 		try {
-			setState(113);
+			setState(115);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__6:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(108);
+				setState(110);
 				match(T__6);
-				setState(109);
+				setState(111);
 				((Mas_varsContext)_localctx).ID = match(ID);
 
-				if not program.variableExists((((Mas_varsContext)_localctx).ID!=null?((Mas_varsContext)_localctx).ID.getText():null)):
-				    program.tempVarDeclarations.append((((Mas_varsContext)_localctx).ID!=null?((Mas_varsContext)_localctx).ID.getText():null))
-				else:
-				    print("Variable " + (((Mas_varsContext)_localctx).ID!=null?((Mas_varsContext)_localctx).ID.getText():null) + " already declared")
+				program.declareNewVariable((((Mas_varsContext)_localctx).ID!=null?((Mas_varsContext)_localctx).ID.getText():null))
 
-				setState(111);
+				setState(113);
 				mas_vars();
 				}
 				break;
@@ -433,6 +392,7 @@ public class littleDuckParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class Mas_dec_varsContext extends ParserRuleContext {
+		public Token ID;
 		public TerminalNode ID() { return getToken(littleDuckParser.ID, 0); }
 		public Mas_varsContext mas_vars() {
 			return getRuleContext(Mas_varsContext.class,0);
@@ -447,38 +407,33 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mas_dec_vars; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterMas_dec_vars(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitMas_dec_vars(this);
-		}
 	}
 
 	public final Mas_dec_varsContext mas_dec_vars() throws RecognitionException {
 		Mas_dec_varsContext _localctx = new Mas_dec_varsContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_mas_dec_vars);
 		try {
-			setState(124);
+			setState(127);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(115);
-				match(ID);
-				setState(116);
-				mas_vars();
 				setState(117);
-				match(T__5);
-				setState(118);
-				type();
+				((Mas_dec_varsContext)_localctx).ID = match(ID);
+
+				program.declareNewVariable((((Mas_dec_varsContext)_localctx).ID!=null?((Mas_dec_varsContext)_localctx).ID.getText():null))
+
 				setState(119);
+				mas_vars();
+				setState(120);
+				match(T__5);
+				setState(121);
+				type();
+				setState(122);
 				match(T__1);
 				program.clearTempVarDeclaration()
-				setState(121);
+				setState(124);
 				mas_dec_vars();
 				}
 				break;
@@ -510,33 +465,33 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_type; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterType(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitType(this);
-		}
 	}
 
 	public final TypeContext type() throws RecognitionException {
 		TypeContext _localctx = new TypeContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_type);
-		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(126);
-			_la = _input.LA(1);
-			if ( !(_la==T__7 || _la==T__8) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			setState(133);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case T__7:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(129);
+				match(T__7);
+				program.currentType = "int"
+				}
+				break;
+			case T__8:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(131);
+				match(T__8);
+				program.currentType = "float"
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -559,14 +514,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_body; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterBody(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitBody(this);
-		}
 	}
 
 	public final BodyContext body() throws RecognitionException {
@@ -575,11 +522,11 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(128);
+			setState(135);
 			match(T__9);
-			setState(129);
+			setState(136);
 			statement();
-			setState(130);
+			setState(137);
 			match(T__10);
 			}
 		}
@@ -606,21 +553,13 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_statement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitStatement(this);
-		}
 	}
 
 	public final StatementContext statement() throws RecognitionException {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_statement);
 		try {
-			setState(136);
+			setState(143);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__12:
@@ -629,9 +568,9 @@ public class littleDuckParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(132);
+				setState(139);
 				options_statement();
-				setState(133);
+				setState(140);
 				statement();
 				}
 				break;
@@ -676,55 +615,47 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_options_statement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOptions_statement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOptions_statement(this);
-		}
 	}
 
 	public final Options_statementContext options_statement() throws RecognitionException {
 		Options_statementContext _localctx = new Options_statementContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_options_statement);
 		try {
-			setState(143);
+			setState(150);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(138);
+				setState(145);
 				assign();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(139);
+				setState(146);
 				condition();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(140);
+				setState(147);
 				cycle();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(141);
+				setState(148);
 				f_call();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(142);
+				setState(149);
 				print();
 				}
 				break;
@@ -752,14 +683,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_assign; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterAssign(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitAssign(this);
-		}
 	}
 
 	public final AssignContext assign() throws RecognitionException {
@@ -768,17 +691,21 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(145);
+			setState(152);
 			((AssignContext)_localctx).ID = match(ID);
 
-			if not program.variableExists((((AssignContext)_localctx).ID!=null?((AssignContext)_localctx).ID.getText():null)):
-			    print((((AssignContext)_localctx).ID!=null?((AssignContext)_localctx).ID.getText():null) + " does not exist in current context")
+			program.variableDeclared((((AssignContext)_localctx).ID!=null?((AssignContext)_localctx).ID.getText():null))
 
-			setState(147);
+			setState(154);
 			match(T__11);
-			setState(148);
+			setState(155);
 			expresion();
-			setState(149);
+
+			if program.variableDeclared((((AssignContext)_localctx).ID!=null?((AssignContext)_localctx).ID.getText():null)):
+			    program.assignInsertQuad('=', program.stack_operands.pop(), None, (((AssignContext)_localctx).ID!=null?((AssignContext)_localctx).ID.getText():null))
+			    program.clearTempVars()
+
+			setState(157);
 			match(T__1);
 			}
 		}
@@ -808,14 +735,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_condition; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterCondition(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitCondition(this);
-		}
 	}
 
 	public final ConditionContext condition() throws RecognitionException {
@@ -824,19 +743,26 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(151);
+			setState(159);
 			match(T__12);
-			setState(152);
+			setState(160);
 			match(T__13);
-			setState(153);
+			setState(161);
 			expresion();
-			setState(154);
+			setState(162);
 			match(T__14);
-			setState(155);
+
+			if program.checkBoolExpression():
+			    program.insertQuad('GOTOF', program.stack_operands.pop(), None, None)
+			    program.stack_jumps.append(len(program.quadruples) - 1)
+			setState(164);
 			body();
-			setState(156);
+			setState(165);
 			else_();
-			setState(157);
+
+			program.editQuad(2, len(program.quadruples), program.stack_jumps.pop())
+
+			setState(167);
 			match(T__1);
 			}
 		}
@@ -860,29 +786,26 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_else; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterElse(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitElse(this);
-		}
 	}
 
 	public final ElseContext else_() throws RecognitionException {
 		ElseContext _localctx = new ElseContext(_ctx, getState());
 		enterRule(_localctx, 24, RULE_else);
 		try {
-			setState(162);
+			setState(173);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__15:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(159);
+				setState(169);
 				match(T__15);
-				setState(160);
+
+				program.insertQuad('GOTO', None, None, None)
+				program.editQuad(2, len(program.quadruples), program.stack_jumps.pop())
+				program.stack_jumps.append(len(program.quadruples) - 1)
+
+				setState(171);
 				body();
 				}
 				break;
@@ -918,14 +841,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_cycle; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterCycle(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitCycle(this);
-		}
 	}
 
 	public final CycleContext cycle() throws RecognitionException {
@@ -934,19 +849,24 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(164);
+			setState(175);
 			match(T__16);
-			setState(165);
+			program.stack_jumps.append(len(program.quadruples))
+			setState(177);
 			body();
-			setState(166);
+			setState(178);
 			match(T__17);
-			setState(167);
+			setState(179);
 			match(T__13);
-			setState(168);
+			setState(180);
 			expresion();
-			setState(169);
+			setState(181);
 			match(T__14);
-			setState(170);
+
+			if program.checkBoolExpression():
+			    program.insertQuad('GOTOT', program.stack_operands.pop(), program.stack_jumps.pop(), None)
+
+			setState(183);
 			match(T__1);
 			}
 		}
@@ -971,14 +891,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_f_call; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterF_call(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitF_call(this);
-		}
 	}
 
 	public final F_callContext f_call() throws RecognitionException {
@@ -987,15 +899,15 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(172);
+			setState(185);
 			match(ID);
-			setState(173);
+			setState(186);
 			match(T__13);
-			setState(174);
+			setState(187);
 			opc_f_call();
-			setState(175);
+			setState(188);
 			match(T__14);
-			setState(176);
+			setState(189);
 			match(T__1);
 			}
 		}
@@ -1022,21 +934,13 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_opc_f_call; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOpc_f_call(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOpc_f_call(this);
-		}
 	}
 
 	public final Opc_f_callContext opc_f_call() throws RecognitionException {
 		Opc_f_callContext _localctx = new Opc_f_callContext(_ctx, getState());
 		enterRule(_localctx, 30, RULE_opc_f_call);
 		try {
-			setState(182);
+			setState(195);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__13:
@@ -1047,9 +951,9 @@ public class littleDuckParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(178);
+				setState(191);
 				expresion();
-				setState(179);
+				setState(192);
 				mas_f_call();
 				}
 				break;
@@ -1082,29 +986,21 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mas_f_call; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterMas_f_call(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitMas_f_call(this);
-		}
 	}
 
 	public final Mas_f_callContext mas_f_call() throws RecognitionException {
 		Mas_f_callContext _localctx = new Mas_f_callContext(_ctx, getState());
 		enterRule(_localctx, 32, RULE_mas_f_call);
 		try {
-			setState(187);
+			setState(200);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__6:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(184);
+				setState(197);
 				match(T__6);
-				setState(185);
+				setState(198);
 				opc_f_call();
 				}
 				break;
@@ -1137,14 +1033,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_print; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterPrint(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitPrint(this);
-		}
 	}
 
 	public final PrintContext print() throws RecognitionException {
@@ -1153,15 +1041,15 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(189);
+			setState(202);
 			match(T__18);
-			setState(190);
+			setState(203);
 			match(T__13);
-			setState(191);
+			setState(204);
 			opc_print();
-			setState(192);
+			setState(205);
 			match(T__14);
-			setState(193);
+			setState(206);
 			match(T__1);
 			}
 		}
@@ -1178,6 +1066,7 @@ public class littleDuckParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class Opc_printContext extends ParserRuleContext {
+		public Token CTE_STRING;
 		public ExpresionContext expresion() {
 			return getRuleContext(ExpresionContext.class,0);
 		}
@@ -1189,21 +1078,13 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_opc_print; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOpc_print(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOpc_print(this);
-		}
 	}
 
 	public final Opc_printContext opc_print() throws RecognitionException {
 		Opc_printContext _localctx = new Opc_printContext(_ctx, getState());
 		enterRule(_localctx, 36, RULE_opc_print);
 		try {
-			setState(200);
+			setState(216);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__13:
@@ -1214,18 +1095,23 @@ public class littleDuckParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(195);
+				print("hanlo")
+				setState(209);
 				expresion();
-				setState(196);
+				program.insertQuad('print', program.stack_operands.pop(), None, None)
+				program.clearTempVars()
+				setState(211);
 				mas_print();
 				}
 				break;
 			case CTE_STRING:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(198);
-				match(CTE_STRING);
-				setState(199);
+				setState(213);
+				((Opc_printContext)_localctx).CTE_STRING = match(CTE_STRING);
+				program.insertQuad('print', (((Opc_printContext)_localctx).CTE_STRING!=null?((Opc_printContext)_localctx).CTE_STRING.getText():null), None, None)
+				program.clearTempVars()
+				setState(215);
 				mas_print();
 				}
 				break;
@@ -1253,29 +1139,21 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mas_print; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterMas_print(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitMas_print(this);
-		}
 	}
 
 	public final Mas_printContext mas_print() throws RecognitionException {
 		Mas_printContext _localctx = new Mas_printContext(_ctx, getState());
 		enterRule(_localctx, 38, RULE_mas_print);
 		try {
-			setState(205);
+			setState(221);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__6:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(202);
+				setState(218);
 				match(T__6);
-				setState(203);
+				setState(219);
 				opc_print();
 				}
 				break;
@@ -1316,14 +1194,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_funcs; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterFuncs(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitFuncs(this);
-		}
 	}
 
 	public final FuncsContext funcs() throws RecognitionException {
@@ -1332,33 +1202,28 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(207);
+			setState(223);
 			match(T__19);
-			setState(208);
+			setState(224);
 			((FuncsContext)_localctx).ID = match(ID);
 
-			if not program.functionExists((((FuncsContext)_localctx).ID!=null?((FuncsContext)_localctx).ID.getText():null)):
-			    program.functionTable.append((((FuncsContext)_localctx).ID!=null?((FuncsContext)_localctx).ID.getText():null))
-			    program.currentLevel = (((FuncsContext)_localctx).ID!=null?((FuncsContext)_localctx).ID.getText():null)
-			    program.variableTable[program.currentLevel] = []
-			else:
-			    print("Function " + (((FuncsContext)_localctx).ID!=null?((FuncsContext)_localctx).ID.getText():null) + " already declared")
+			program.newFunction((((FuncsContext)_localctx).ID!=null?((FuncsContext)_localctx).ID.getText():null))
 
-			setState(210);
+			setState(226);
 			match(T__13);
-			setState(211);
+			setState(227);
 			opc_funcs();
-			setState(212);
+			setState(228);
 			match(T__14);
-			setState(213);
+			setState(229);
 			match(T__20);
-			setState(214);
+			setState(230);
 			vars_funcs();
-			setState(215);
+			setState(231);
 			body();
-			setState(216);
+			setState(232);
 			match(T__21);
-			setState(217);
+			setState(233);
 			match(T__1);
 			}
 		}
@@ -1387,39 +1252,28 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_opc_funcs; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOpc_funcs(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOpc_funcs(this);
-		}
 	}
 
 	public final Opc_funcsContext opc_funcs() throws RecognitionException {
 		Opc_funcsContext _localctx = new Opc_funcsContext(_ctx, getState());
 		enterRule(_localctx, 42, RULE_opc_funcs);
 		try {
-			setState(226);
+			setState(242);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(219);
+				setState(235);
 				((Opc_funcsContext)_localctx).ID = match(ID);
 
-				if not program.variableExists((((Opc_funcsContext)_localctx).ID!=null?((Opc_funcsContext)_localctx).ID.getText():null)):
-				    program.tempVarDeclarations.append((((Opc_funcsContext)_localctx).ID!=null?((Opc_funcsContext)_localctx).ID.getText():null))
-				else:
-				    print("Variable " + (((Opc_funcsContext)_localctx).ID!=null?((Opc_funcsContext)_localctx).ID.getText():null) + " already declared")
+				program.declareNewVariable((((Opc_funcsContext)_localctx).ID!=null?((Opc_funcsContext)_localctx).ID.getText():null))
 
-				setState(221);
+				setState(237);
 				match(T__5);
-				setState(222);
+				setState(238);
 				type();
-				setState(223);
+				setState(239);
 				mas_opc_funcs();
 				}
 				break;
@@ -1452,29 +1306,21 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mas_opc_funcs; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterMas_opc_funcs(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitMas_opc_funcs(this);
-		}
 	}
 
 	public final Mas_opc_funcsContext mas_opc_funcs() throws RecognitionException {
 		Mas_opc_funcsContext _localctx = new Mas_opc_funcsContext(_ctx, getState());
 		enterRule(_localctx, 44, RULE_mas_opc_funcs);
 		try {
-			setState(231);
+			setState(247);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__6:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(228);
+				setState(244);
 				match(T__6);
-				setState(229);
+				setState(245);
 				next_opc_funcs();
 				}
 				break;
@@ -1512,14 +1358,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_next_opc_funcs; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterNext_opc_funcs(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitNext_opc_funcs(this);
-		}
 	}
 
 	public final Next_opc_funcsContext next_opc_funcs() throws RecognitionException {
@@ -1528,19 +1366,16 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(233);
+			setState(249);
 			((Next_opc_funcsContext)_localctx).ID = match(ID);
 
-			if not program.variableExists((((Next_opc_funcsContext)_localctx).ID!=null?((Next_opc_funcsContext)_localctx).ID.getText():null)):
-			    program.tempVarDeclarations.append((((Next_opc_funcsContext)_localctx).ID!=null?((Next_opc_funcsContext)_localctx).ID.getText():null))
-			else:
-			    print("Variable " + (((Next_opc_funcsContext)_localctx).ID!=null?((Next_opc_funcsContext)_localctx).ID.getText():null) + " already declared")
+			program.declareNewVariable((((Next_opc_funcsContext)_localctx).ID!=null?((Next_opc_funcsContext)_localctx).ID.getText():null))
 
-			setState(235);
+			setState(251);
 			match(T__5);
-			setState(236);
+			setState(252);
 			type();
-			setState(237);
+			setState(253);
 			mas_opc_funcs();
 			}
 		}
@@ -1564,27 +1399,19 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_vars_funcs; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterVars_funcs(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitVars_funcs(this);
-		}
 	}
 
 	public final Vars_funcsContext vars_funcs() throws RecognitionException {
 		Vars_funcsContext _localctx = new Vars_funcsContext(_ctx, getState());
 		enterRule(_localctx, 48, RULE_vars_funcs);
 		try {
-			setState(241);
+			setState(257);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__4:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(239);
+				setState(255);
 				vars();
 				}
 				break;
@@ -1610,39 +1437,41 @@ public class littleDuckParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class CteContext extends ParserRuleContext {
+		public Token CTE_INT;
+		public Token CTE_FLOAT;
 		public TerminalNode CTE_INT() { return getToken(littleDuckParser.CTE_INT, 0); }
 		public TerminalNode CTE_FLOAT() { return getToken(littleDuckParser.CTE_FLOAT, 0); }
 		public CteContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_cte; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterCte(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitCte(this);
-		}
 	}
 
 	public final CteContext cte() throws RecognitionException {
 		CteContext _localctx = new CteContext(_ctx, getState());
 		enterRule(_localctx, 50, RULE_cte);
-		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(243);
-			_la = _input.LA(1);
-			if ( !(_la==CTE_INT || _la==CTE_FLOAT) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			setState(263);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case CTE_INT:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(259);
+				((CteContext)_localctx).CTE_INT = match(CTE_INT);
+				program.stack_operands.append(int((((CteContext)_localctx).CTE_INT!=null?((CteContext)_localctx).CTE_INT.getText():null)))
+				}
+				break;
+			case CTE_FLOAT:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(261);
+				((CteContext)_localctx).CTE_FLOAT = match(CTE_FLOAT);
+				program.stack_operands.append(float((((CteContext)_localctx).CTE_FLOAT!=null?((CteContext)_localctx).CTE_FLOAT.getText():null)))
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1668,14 +1497,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_expresion; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterExpresion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitExpresion(this);
-		}
 	}
 
 	public final ExpresionContext expresion() throws RecognitionException {
@@ -1684,10 +1505,12 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(245);
+			setState(265);
 			exp();
-			setState(246);
+			program.clearQuadrupleList('+')
+			setState(267);
 			opc_expresion();
+			program.clearQuadrupleList('eoe')
 			}
 		}
 		catch (RecognitionException re) {
@@ -1710,47 +1533,48 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_opc_expresion; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOpc_expresion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOpc_expresion(this);
-		}
 	}
 
 	public final Opc_expresionContext opc_expresion() throws RecognitionException {
 		Opc_expresionContext _localctx = new Opc_expresionContext(_ctx, getState());
 		enterRule(_localctx, 54, RULE_opc_expresion);
 		try {
-			setState(255);
+			setState(280);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__22:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(248);
+				setState(270);
 				match(T__22);
-				setState(249);
+
+				program.stack_operator.append('>')
+
+				setState(272);
 				exp();
 				}
 				break;
 			case T__23:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(250);
+				setState(273);
 				match(T__23);
-				setState(251);
+
+				program.stack_operator.append('<')
+
+				setState(275);
 				exp();
 				}
 				break;
 			case T__24:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(252);
+				setState(276);
 				match(T__24);
-				setState(253);
+
+				program.stack_operator.append('!=')
+
+				setState(278);
 				exp();
 				}
 				break;
@@ -1788,14 +1612,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_exp; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterExp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitExp(this);
-		}
 	}
 
 	public final ExpContext exp() throws RecognitionException {
@@ -1804,9 +1620,10 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(257);
+			setState(282);
 			termino();
-			setState(258);
+			program.clearQuadrupleList('*')
+			setState(284);
 			mas_exp();
 			}
 		}
@@ -1823,8 +1640,8 @@ public class littleDuckParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class Mas_expContext extends ParserRuleContext {
-		public SignoContext signo() {
-			return getRuleContext(SignoContext.class,0);
+		public Exp_signoContext exp_signo() {
+			return getRuleContext(Exp_signoContext.class,0);
 		}
 		public ExpContext exp() {
 			return getRuleContext(ExpContext.class,0);
@@ -1833,30 +1650,22 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mas_exp; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterMas_exp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitMas_exp(this);
-		}
 	}
 
 	public final Mas_expContext mas_exp() throws RecognitionException {
 		Mas_expContext _localctx = new Mas_expContext(_ctx, getState());
 		enterRule(_localctx, 58, RULE_mas_exp);
 		try {
-			setState(264);
+			setState(290);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__25:
 			case T__26:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(260);
-				signo();
-				setState(261);
+				setState(286);
+				exp_signo();
+				setState(287);
 				exp();
 				}
 				break;
@@ -1886,38 +1695,42 @@ public class littleDuckParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class SignoContext extends ParserRuleContext {
-		public SignoContext(ParserRuleContext parent, int invokingState) {
+	public static class Exp_signoContext extends ParserRuleContext {
+		public Exp_signoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_signo; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterSigno(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitSigno(this);
-		}
+		@Override public int getRuleIndex() { return RULE_exp_signo; }
 	}
 
-	public final SignoContext signo() throws RecognitionException {
-		SignoContext _localctx = new SignoContext(_ctx, getState());
-		enterRule(_localctx, 60, RULE_signo);
-		int _la;
+	public final Exp_signoContext exp_signo() throws RecognitionException {
+		Exp_signoContext _localctx = new Exp_signoContext(_ctx, getState());
+		enterRule(_localctx, 60, RULE_exp_signo);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(266);
-			_la = _input.LA(1);
-			if ( !(_la==T__25 || _la==T__26) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			setState(296);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case T__25:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(292);
+				match(T__25);
+
+				program.stack_operator.append('+')
+
+				}
+				break;
+			case T__26:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(294);
+				match(T__26);
+
+				program.stack_operator.append('-')
+
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1943,14 +1756,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_termino; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterTermino(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitTermino(this);
-		}
 	}
 
 	public final TerminoContext termino() throws RecognitionException {
@@ -1959,9 +1764,9 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(268);
+			setState(298);
 			factor();
-			setState(269);
+			setState(299);
 			mas_termino();
 			}
 		}
@@ -1988,30 +1793,22 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mas_termino; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterMas_termino(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitMas_termino(this);
-		}
 	}
 
 	public final Mas_terminoContext mas_termino() throws RecognitionException {
 		Mas_terminoContext _localctx = new Mas_terminoContext(_ctx, getState());
 		enterRule(_localctx, 64, RULE_mas_termino);
 		try {
-			setState(275);
+			setState(305);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__27:
 			case T__28:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(271);
+				setState(301);
 				signo_factor();
-				setState(272);
+				setState(302);
 				termino();
 				}
 				break;
@@ -2048,33 +1845,33 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_signo_factor; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterSigno_factor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitSigno_factor(this);
-		}
 	}
 
 	public final Signo_factorContext signo_factor() throws RecognitionException {
 		Signo_factorContext _localctx = new Signo_factorContext(_ctx, getState());
 		enterRule(_localctx, 66, RULE_signo_factor);
-		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(277);
-			_la = _input.LA(1);
-			if ( !(_la==T__27 || _la==T__28) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			setState(311);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case T__27:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(307);
+				match(T__27);
+				program.stack_operator.append('*')
+				}
+				break;
+			case T__28:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(309);
+				match(T__28);
+				program.stack_operator.append('/')
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2097,14 +1894,6 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_factor; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterFactor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitFactor(this);
-		}
 	}
 
 	public final FactorContext factor() throws RecognitionException {
@@ -2113,7 +1902,7 @@ public class littleDuckParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(279);
+			setState(313);
 			opc_factor();
 			}
 		}
@@ -2143,32 +1932,30 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_opc_factor; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOpc_factor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOpc_factor(this);
-		}
 	}
 
 	public final Opc_factorContext opc_factor() throws RecognitionException {
 		Opc_factorContext _localctx = new Opc_factorContext(_ctx, getState());
 		enterRule(_localctx, 70, RULE_opc_factor);
 		try {
-			setState(288);
+			setState(324);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__13:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(281);
+				setState(315);
 				match(T__13);
-				setState(282);
+
+				program.stack_operator.append('(')
+
+				setState(317);
 				expresion();
-				setState(283);
+				setState(318);
 				match(T__14);
+
+				program.clearQuadrupleList(')')
+
 				}
 				break;
 			case T__25:
@@ -2178,9 +1965,9 @@ public class littleDuckParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(285);
+				setState(321);
 				opc_signo();
-				setState(286);
+				setState(322);
 				opc_factor_prime();
 				}
 				break;
@@ -2208,28 +1995,20 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_opc_signo; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOpc_signo(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOpc_signo(this);
-		}
 	}
 
 	public final Opc_signoContext opc_signo() throws RecognitionException {
 		Opc_signoContext _localctx = new Opc_signoContext(_ctx, getState());
 		enterRule(_localctx, 72, RULE_opc_signo);
 		try {
-			setState(292);
+			setState(328);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__25:
 			case T__26:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(290);
+				setState(326);
 				signo();
 				}
 				break;
@@ -2256,6 +2035,44 @@ public class littleDuckParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
+	public static class SignoContext extends ParserRuleContext {
+		public SignoContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_signo; }
+	}
+
+	public final SignoContext signo() throws RecognitionException {
+		SignoContext _localctx = new SignoContext(_ctx, getState());
+		enterRule(_localctx, 74, RULE_signo);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(330);
+			_la = _input.LA(1);
+			if ( !(_la==T__25 || _la==T__26) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
 	public static class Opc_factor_primeContext extends ParserRuleContext {
 		public Token ID;
 		public TerminalNode ID() { return getToken(littleDuckParser.ID, 0); }
@@ -2266,31 +2083,23 @@ public class littleDuckParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_opc_factor_prime; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).enterOpc_factor_prime(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof littleDuckListener ) ((littleDuckListener)listener).exitOpc_factor_prime(this);
-		}
 	}
 
 	public final Opc_factor_primeContext opc_factor_prime() throws RecognitionException {
 		Opc_factor_primeContext _localctx = new Opc_factor_primeContext(_ctx, getState());
-		enterRule(_localctx, 74, RULE_opc_factor_prime);
+		enterRule(_localctx, 76, RULE_opc_factor_prime);
 		try {
-			setState(297);
+			setState(335);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(294);
+				setState(332);
 				((Opc_factor_primeContext)_localctx).ID = match(ID);
 
-				if not program.variableExists((((Opc_factor_primeContext)_localctx).ID!=null?((Opc_factor_primeContext)_localctx).ID.getText():null)):
-				    print((((Opc_factor_primeContext)_localctx).ID!=null?((Opc_factor_primeContext)_localctx).ID.getText():null) + " does not exist in current context")
+				if program.variableDeclared((((Opc_factor_primeContext)_localctx).ID!=null?((Opc_factor_primeContext)_localctx).ID.getText():null)):
+				    program.stack_operands.append((((Opc_factor_primeContext)_localctx).ID!=null?((Opc_factor_primeContext)_localctx).ID.getText():null))
 
 				}
 				break;
@@ -2298,7 +2107,7 @@ public class littleDuckParser extends Parser {
 			case CTE_FLOAT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(296);
+				setState(334);
 				cte();
 				}
 				break;
@@ -2318,7 +2127,7 @@ public class littleDuckParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001#\u012c\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001#\u0152\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
@@ -2329,173 +2138,200 @@ public class littleDuckParser extends Parser {
 		"\u0002\u0019\u0007\u0019\u0002\u001a\u0007\u001a\u0002\u001b\u0007\u001b"+
 		"\u0002\u001c\u0007\u001c\u0002\u001d\u0007\u001d\u0002\u001e\u0007\u001e"+
 		"\u0002\u001f\u0007\u001f\u0002 \u0007 \u0002!\u0007!\u0002\"\u0007\"\u0002"+
-		"#\u0007#\u0002$\u0007$\u0002%\u0007%\u0001\u0000\u0001\u0000\u0001\u0000"+
+		"#\u0007#\u0002$\u0007$\u0002%\u0007%\u0002&\u0007&\u0001\u0000\u0001\u0000"+
 		"\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000"+
-		"\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001"+
-		"[\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u0002"+
-		"a\b\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
-		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0004"+
-		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004r\b\u0004"+
-		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005"+
-		"\u0001\u0005\u0001\u0005\u0001\u0005\u0003\u0005}\b\u0005\u0001\u0006"+
-		"\u0001\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\b\u0001"+
-		"\b\u0001\b\u0001\b\u0003\b\u0089\b\b\u0001\t\u0001\t\u0001\t\u0001\t\u0001"+
-		"\t\u0003\t\u0090\b\t\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001"+
-		"\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001"+
-		"\u000b\u0001\u000b\u0001\f\u0001\f\u0001\f\u0003\f\u00a3\b\f\u0001\r\u0001"+
-		"\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\u000e\u0001\u000e"+
-		"\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000f\u0001\u000f"+
-		"\u0001\u000f\u0001\u000f\u0003\u000f\u00b7\b\u000f\u0001\u0010\u0001\u0010"+
-		"\u0001\u0010\u0003\u0010\u00bc\b\u0010\u0001\u0011\u0001\u0011\u0001\u0011"+
-		"\u0001\u0011\u0001\u0011\u0001\u0011\u0001\u0012\u0001\u0012\u0001\u0012"+
-		"\u0001\u0012\u0001\u0012\u0003\u0012\u00c9\b\u0012\u0001\u0013\u0001\u0013"+
-		"\u0001\u0013\u0003\u0013\u00ce\b\u0013\u0001\u0014\u0001\u0014\u0001\u0014"+
+		"\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0003\u0001]\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
+		"\u0003\u0002c\b\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004"+
+		"t\b\u0004\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0003\u0005"+
+		"\u0080\b\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0003\u0006"+
+		"\u0086\b\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\b"+
+		"\u0001\b\u0001\b\u0001\b\u0003\b\u0090\b\b\u0001\t\u0001\t\u0001\t\u0001"+
+		"\t\u0001\t\u0003\t\u0097\b\t\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001"+
+		"\n\u0001\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b"+
+		"\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\f\u0001"+
+		"\f\u0001\f\u0001\f\u0003\f\u00ae\b\f\u0001\r\u0001\r\u0001\r\u0001\r\u0001"+
+		"\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\u000e\u0001\u000e\u0001"+
+		"\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000f\u0001\u000f\u0001"+
+		"\u000f\u0001\u000f\u0003\u000f\u00c4\b\u000f\u0001\u0010\u0001\u0010\u0001"+
+		"\u0010\u0003\u0010\u00c9\b\u0010\u0001\u0011\u0001\u0011\u0001\u0011\u0001"+
+		"\u0011\u0001\u0011\u0001\u0011\u0001\u0012\u0001\u0012\u0001\u0012\u0001"+
+		"\u0012\u0001\u0012\u0001\u0012\u0001\u0012\u0001\u0012\u0003\u0012\u00d9"+
+		"\b\u0012\u0001\u0013\u0001\u0013\u0001\u0013\u0003\u0013\u00de\b\u0013"+
 		"\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0014"+
-		"\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0015\u0001\u0015\u0001\u0015"+
-		"\u0001\u0015\u0001\u0015\u0001\u0015\u0001\u0015\u0003\u0015\u00e3\b\u0015"+
-		"\u0001\u0016\u0001\u0016\u0001\u0016\u0003\u0016\u00e8\b\u0016\u0001\u0017"+
-		"\u0001\u0017\u0001\u0017\u0001\u0017\u0001\u0017\u0001\u0017\u0001\u0018"+
-		"\u0001\u0018\u0003\u0018\u00f2\b\u0018\u0001\u0019\u0001\u0019\u0001\u001a"+
-		"\u0001\u001a\u0001\u001a\u0001\u001b\u0001\u001b\u0001\u001b\u0001\u001b"+
-		"\u0001\u001b\u0001\u001b\u0001\u001b\u0003\u001b\u0100\b\u001b\u0001\u001c"+
-		"\u0001\u001c\u0001\u001c\u0001\u001d\u0001\u001d\u0001\u001d\u0001\u001d"+
-		"\u0003\u001d\u0109\b\u001d\u0001\u001e\u0001\u001e\u0001\u001f\u0001\u001f"+
-		"\u0001\u001f\u0001 \u0001 \u0001 \u0001 \u0003 \u0114\b \u0001!\u0001"+
-		"!\u0001\"\u0001\"\u0001#\u0001#\u0001#\u0001#\u0001#\u0001#\u0001#\u0003"+
-		"#\u0121\b#\u0001$\u0001$\u0003$\u0125\b$\u0001%\u0001%\u0001%\u0003%\u012a"+
-		"\b%\u0001%\u0000\u0000&\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012"+
-		"\u0014\u0016\u0018\u001a\u001c\u001e \"$&(*,.02468:<>@BDFHJ\u0000\u0004"+
-		"\u0001\u0000\b\t\u0001\u0000 !\u0001\u0000\u001a\u001b\u0001\u0000\u001c"+
-		"\u001d\u011e\u0000L\u0001\u0000\u0000\u0000\u0002Z\u0001\u0000\u0000\u0000"+
-		"\u0004`\u0001\u0000\u0000\u0000\u0006b\u0001\u0000\u0000\u0000\bq\u0001"+
-		"\u0000\u0000\u0000\n|\u0001\u0000\u0000\u0000\f~\u0001\u0000\u0000\u0000"+
-		"\u000e\u0080\u0001\u0000\u0000\u0000\u0010\u0088\u0001\u0000\u0000\u0000"+
-		"\u0012\u008f\u0001\u0000\u0000\u0000\u0014\u0091\u0001\u0000\u0000\u0000"+
-		"\u0016\u0097\u0001\u0000\u0000\u0000\u0018\u00a2\u0001\u0000\u0000\u0000"+
-		"\u001a\u00a4\u0001\u0000\u0000\u0000\u001c\u00ac\u0001\u0000\u0000\u0000"+
-		"\u001e\u00b6\u0001\u0000\u0000\u0000 \u00bb\u0001\u0000\u0000\u0000\""+
-		"\u00bd\u0001\u0000\u0000\u0000$\u00c8\u0001\u0000\u0000\u0000&\u00cd\u0001"+
-		"\u0000\u0000\u0000(\u00cf\u0001\u0000\u0000\u0000*\u00e2\u0001\u0000\u0000"+
-		"\u0000,\u00e7\u0001\u0000\u0000\u0000.\u00e9\u0001\u0000\u0000\u00000"+
-		"\u00f1\u0001\u0000\u0000\u00002\u00f3\u0001\u0000\u0000\u00004\u00f5\u0001"+
-		"\u0000\u0000\u00006\u00ff\u0001\u0000\u0000\u00008\u0101\u0001\u0000\u0000"+
-		"\u0000:\u0108\u0001\u0000\u0000\u0000<\u010a\u0001\u0000\u0000\u0000>"+
-		"\u010c\u0001\u0000\u0000\u0000@\u0113\u0001\u0000\u0000\u0000B\u0115\u0001"+
-		"\u0000\u0000\u0000D\u0117\u0001\u0000\u0000\u0000F\u0120\u0001\u0000\u0000"+
-		"\u0000H\u0124\u0001\u0000\u0000\u0000J\u0129\u0001\u0000\u0000\u0000L"+
-		"M\u0005\u0001\u0000\u0000MN\u0005#\u0000\u0000NO\u0006\u0000\uffff\uffff"+
-		"\u0000OP\u0005\u0002\u0000\u0000PQ\u0003\u0002\u0001\u0000QR\u0003\u0004"+
-		"\u0002\u0000RS\u0005\u0003\u0000\u0000ST\u0003\u000e\u0007\u0000TU\u0005"+
-		"\u0004\u0000\u0000UV\u0006\u0000\uffff\uffff\u0000V\u0001\u0001\u0000"+
-		"\u0000\u0000WX\u0006\u0001\uffff\uffff\u0000X[\u0003\u0006\u0003\u0000"+
-		"Y[\u0001\u0000\u0000\u0000ZW\u0001\u0000\u0000\u0000ZY\u0001\u0000\u0000"+
-		"\u0000[\u0003\u0001\u0000\u0000\u0000\\]\u0003(\u0014\u0000]^\u0003\u0004"+
-		"\u0002\u0000^a\u0001\u0000\u0000\u0000_a\u0001\u0000\u0000\u0000`\\\u0001"+
-		"\u0000\u0000\u0000`_\u0001\u0000\u0000\u0000a\u0005\u0001\u0000\u0000"+
-		"\u0000bc\u0005\u0005\u0000\u0000cd\u0005#\u0000\u0000de\u0006\u0003\uffff"+
-		"\uffff\u0000ef\u0003\b\u0004\u0000fg\u0005\u0006\u0000\u0000gh\u0003\f"+
-		"\u0006\u0000hi\u0005\u0002\u0000\u0000ij\u0006\u0003\uffff\uffff\u0000"+
-		"jk\u0003\n\u0005\u0000k\u0007\u0001\u0000\u0000\u0000lm\u0005\u0007\u0000"+
-		"\u0000mn\u0005#\u0000\u0000no\u0006\u0004\uffff\uffff\u0000or\u0003\b"+
-		"\u0004\u0000pr\u0001\u0000\u0000\u0000ql\u0001\u0000\u0000\u0000qp\u0001"+
-		"\u0000\u0000\u0000r\t\u0001\u0000\u0000\u0000st\u0005#\u0000\u0000tu\u0003"+
-		"\b\u0004\u0000uv\u0005\u0006\u0000\u0000vw\u0003\f\u0006\u0000wx\u0005"+
-		"\u0002\u0000\u0000xy\u0006\u0005\uffff\uffff\u0000yz\u0003\n\u0005\u0000"+
-		"z}\u0001\u0000\u0000\u0000{}\u0001\u0000\u0000\u0000|s\u0001\u0000\u0000"+
-		"\u0000|{\u0001\u0000\u0000\u0000}\u000b\u0001\u0000\u0000\u0000~\u007f"+
-		"\u0007\u0000\u0000\u0000\u007f\r\u0001\u0000\u0000\u0000\u0080\u0081\u0005"+
-		"\n\u0000\u0000\u0081\u0082\u0003\u0010\b\u0000\u0082\u0083\u0005\u000b"+
-		"\u0000\u0000\u0083\u000f\u0001\u0000\u0000\u0000\u0084\u0085\u0003\u0012"+
-		"\t\u0000\u0085\u0086\u0003\u0010\b\u0000\u0086\u0089\u0001\u0000\u0000"+
-		"\u0000\u0087\u0089\u0001\u0000\u0000\u0000\u0088\u0084\u0001\u0000\u0000"+
-		"\u0000\u0088\u0087\u0001\u0000\u0000\u0000\u0089\u0011\u0001\u0000\u0000"+
-		"\u0000\u008a\u0090\u0003\u0014\n\u0000\u008b\u0090\u0003\u0016\u000b\u0000"+
-		"\u008c\u0090\u0003\u001a\r\u0000\u008d\u0090\u0003\u001c\u000e\u0000\u008e"+
-		"\u0090\u0003\"\u0011\u0000\u008f\u008a\u0001\u0000\u0000\u0000\u008f\u008b"+
-		"\u0001\u0000\u0000\u0000\u008f\u008c\u0001\u0000\u0000\u0000\u008f\u008d"+
-		"\u0001\u0000\u0000\u0000\u008f\u008e\u0001\u0000\u0000\u0000\u0090\u0013"+
-		"\u0001\u0000\u0000\u0000\u0091\u0092\u0005#\u0000\u0000\u0092\u0093\u0006"+
-		"\n\uffff\uffff\u0000\u0093\u0094\u0005\f\u0000\u0000\u0094\u0095\u0003"+
-		"4\u001a\u0000\u0095\u0096\u0005\u0002\u0000\u0000\u0096\u0015\u0001\u0000"+
-		"\u0000\u0000\u0097\u0098\u0005\r\u0000\u0000\u0098\u0099\u0005\u000e\u0000"+
-		"\u0000\u0099\u009a\u00034\u001a\u0000\u009a\u009b\u0005\u000f\u0000\u0000"+
-		"\u009b\u009c\u0003\u000e\u0007\u0000\u009c\u009d\u0003\u0018\f\u0000\u009d"+
-		"\u009e\u0005\u0002\u0000\u0000\u009e\u0017\u0001\u0000\u0000\u0000\u009f"+
-		"\u00a0\u0005\u0010\u0000\u0000\u00a0\u00a3\u0003\u000e\u0007\u0000\u00a1"+
-		"\u00a3\u0001\u0000\u0000\u0000\u00a2\u009f\u0001\u0000\u0000\u0000\u00a2"+
-		"\u00a1\u0001\u0000\u0000\u0000\u00a3\u0019\u0001\u0000\u0000\u0000\u00a4"+
-		"\u00a5\u0005\u0011\u0000\u0000\u00a5\u00a6\u0003\u000e\u0007\u0000\u00a6"+
-		"\u00a7\u0005\u0012\u0000\u0000\u00a7\u00a8\u0005\u000e\u0000\u0000\u00a8"+
-		"\u00a9\u00034\u001a\u0000\u00a9\u00aa\u0005\u000f\u0000\u0000\u00aa\u00ab"+
-		"\u0005\u0002\u0000\u0000\u00ab\u001b\u0001\u0000\u0000\u0000\u00ac\u00ad"+
-		"\u0005#\u0000\u0000\u00ad\u00ae\u0005\u000e\u0000\u0000\u00ae\u00af\u0003"+
-		"\u001e\u000f\u0000\u00af\u00b0\u0005\u000f\u0000\u0000\u00b0\u00b1\u0005"+
-		"\u0002\u0000\u0000\u00b1\u001d\u0001\u0000\u0000\u0000\u00b2\u00b3\u0003"+
-		"4\u001a\u0000\u00b3\u00b4\u0003 \u0010\u0000\u00b4\u00b7\u0001\u0000\u0000"+
-		"\u0000\u00b5\u00b7\u0001\u0000\u0000\u0000\u00b6\u00b2\u0001\u0000\u0000"+
-		"\u0000\u00b6\u00b5\u0001\u0000\u0000\u0000\u00b7\u001f\u0001\u0000\u0000"+
-		"\u0000\u00b8\u00b9\u0005\u0007\u0000\u0000\u00b9\u00bc\u0003\u001e\u000f"+
-		"\u0000\u00ba\u00bc\u0001\u0000\u0000\u0000\u00bb\u00b8\u0001\u0000\u0000"+
-		"\u0000\u00bb\u00ba\u0001\u0000\u0000\u0000\u00bc!\u0001\u0000\u0000\u0000"+
-		"\u00bd\u00be\u0005\u0013\u0000\u0000\u00be\u00bf\u0005\u000e\u0000\u0000"+
-		"\u00bf\u00c0\u0003$\u0012\u0000\u00c0\u00c1\u0005\u000f\u0000\u0000\u00c1"+
-		"\u00c2\u0005\u0002\u0000\u0000\u00c2#\u0001\u0000\u0000\u0000\u00c3\u00c4"+
-		"\u00034\u001a\u0000\u00c4\u00c5\u0003&\u0013\u0000\u00c5\u00c9\u0001\u0000"+
-		"\u0000\u0000\u00c6\u00c7\u0005\"\u0000\u0000\u00c7\u00c9\u0003&\u0013"+
-		"\u0000\u00c8\u00c3\u0001\u0000\u0000\u0000\u00c8\u00c6\u0001\u0000\u0000"+
-		"\u0000\u00c9%\u0001\u0000\u0000\u0000\u00ca\u00cb\u0005\u0007\u0000\u0000"+
-		"\u00cb\u00ce\u0003$\u0012\u0000\u00cc\u00ce\u0001\u0000\u0000\u0000\u00cd"+
-		"\u00ca\u0001\u0000\u0000\u0000\u00cd\u00cc\u0001\u0000\u0000\u0000\u00ce"+
-		"\'\u0001\u0000\u0000\u0000\u00cf\u00d0\u0005\u0014\u0000\u0000\u00d0\u00d1"+
-		"\u0005#\u0000\u0000\u00d1\u00d2\u0006\u0014\uffff\uffff\u0000\u00d2\u00d3"+
-		"\u0005\u000e\u0000\u0000\u00d3\u00d4\u0003*\u0015\u0000\u00d4\u00d5\u0005"+
-		"\u000f\u0000\u0000\u00d5\u00d6\u0005\u0015\u0000\u0000\u00d6\u00d7\u0003"+
-		"0\u0018\u0000\u00d7\u00d8\u0003\u000e\u0007\u0000\u00d8\u00d9\u0005\u0016"+
-		"\u0000\u0000\u00d9\u00da\u0005\u0002\u0000\u0000\u00da)\u0001\u0000\u0000"+
-		"\u0000\u00db\u00dc\u0005#\u0000\u0000\u00dc\u00dd\u0006\u0015\uffff\uffff"+
-		"\u0000\u00dd\u00de\u0005\u0006\u0000\u0000\u00de\u00df\u0003\f\u0006\u0000"+
-		"\u00df\u00e0\u0003,\u0016\u0000\u00e0\u00e3\u0001\u0000\u0000\u0000\u00e1"+
-		"\u00e3\u0001\u0000\u0000\u0000\u00e2\u00db\u0001\u0000\u0000\u0000\u00e2"+
-		"\u00e1\u0001\u0000\u0000\u0000\u00e3+\u0001\u0000\u0000\u0000\u00e4\u00e5"+
-		"\u0005\u0007\u0000\u0000\u00e5\u00e8\u0003.\u0017\u0000\u00e6\u00e8\u0001"+
-		"\u0000\u0000\u0000\u00e7\u00e4\u0001\u0000\u0000\u0000\u00e7\u00e6\u0001"+
-		"\u0000\u0000\u0000\u00e8-\u0001\u0000\u0000\u0000\u00e9\u00ea\u0005#\u0000"+
-		"\u0000\u00ea\u00eb\u0006\u0017\uffff\uffff\u0000\u00eb\u00ec\u0005\u0006"+
-		"\u0000\u0000\u00ec\u00ed\u0003\f\u0006\u0000\u00ed\u00ee\u0003,\u0016"+
-		"\u0000\u00ee/\u0001\u0000\u0000\u0000\u00ef\u00f2\u0003\u0006\u0003\u0000"+
-		"\u00f0\u00f2\u0001\u0000\u0000\u0000\u00f1\u00ef\u0001\u0000\u0000\u0000"+
-		"\u00f1\u00f0\u0001\u0000\u0000\u0000\u00f21\u0001\u0000\u0000\u0000\u00f3"+
-		"\u00f4\u0007\u0001\u0000\u0000\u00f43\u0001\u0000\u0000\u0000\u00f5\u00f6"+
-		"\u00038\u001c\u0000\u00f6\u00f7\u00036\u001b\u0000\u00f75\u0001\u0000"+
-		"\u0000\u0000\u00f8\u00f9\u0005\u0017\u0000\u0000\u00f9\u0100\u00038\u001c"+
-		"\u0000\u00fa\u00fb\u0005\u0018\u0000\u0000\u00fb\u0100\u00038\u001c\u0000"+
-		"\u00fc\u00fd\u0005\u0019\u0000\u0000\u00fd\u0100\u00038\u001c\u0000\u00fe"+
-		"\u0100\u0001\u0000\u0000\u0000\u00ff\u00f8\u0001\u0000\u0000\u0000\u00ff"+
-		"\u00fa\u0001\u0000\u0000\u0000\u00ff\u00fc\u0001\u0000\u0000\u0000\u00ff"+
-		"\u00fe\u0001\u0000\u0000\u0000\u01007\u0001\u0000\u0000\u0000\u0101\u0102"+
-		"\u0003>\u001f\u0000\u0102\u0103\u0003:\u001d\u0000\u01039\u0001\u0000"+
-		"\u0000\u0000\u0104\u0105\u0003<\u001e\u0000\u0105\u0106\u00038\u001c\u0000"+
-		"\u0106\u0109\u0001\u0000\u0000\u0000\u0107\u0109\u0001\u0000\u0000\u0000"+
-		"\u0108\u0104\u0001\u0000\u0000\u0000\u0108\u0107\u0001\u0000\u0000\u0000"+
-		"\u0109;\u0001\u0000\u0000\u0000\u010a\u010b\u0007\u0002\u0000\u0000\u010b"+
-		"=\u0001\u0000\u0000\u0000\u010c\u010d\u0003D\"\u0000\u010d\u010e\u0003"+
-		"@ \u0000\u010e?\u0001\u0000\u0000\u0000\u010f\u0110\u0003B!\u0000\u0110"+
-		"\u0111\u0003>\u001f\u0000\u0111\u0114\u0001\u0000\u0000\u0000\u0112\u0114"+
-		"\u0001\u0000\u0000\u0000\u0113\u010f\u0001\u0000\u0000\u0000\u0113\u0112"+
-		"\u0001\u0000\u0000\u0000\u0114A\u0001\u0000\u0000\u0000\u0115\u0116\u0007"+
-		"\u0003\u0000\u0000\u0116C\u0001\u0000\u0000\u0000\u0117\u0118\u0003F#"+
-		"\u0000\u0118E\u0001\u0000\u0000\u0000\u0119\u011a\u0005\u000e\u0000\u0000"+
-		"\u011a\u011b\u00034\u001a\u0000\u011b\u011c\u0005\u000f\u0000\u0000\u011c"+
-		"\u0121\u0001\u0000\u0000\u0000\u011d\u011e\u0003H$\u0000\u011e\u011f\u0003"+
-		"J%\u0000\u011f\u0121\u0001\u0000\u0000\u0000\u0120\u0119\u0001\u0000\u0000"+
-		"\u0000\u0120\u011d\u0001\u0000\u0000\u0000\u0121G\u0001\u0000\u0000\u0000"+
-		"\u0122\u0125\u0003<\u001e\u0000\u0123\u0125\u0001\u0000\u0000\u0000\u0124"+
-		"\u0122\u0001\u0000\u0000\u0000\u0124\u0123\u0001\u0000\u0000\u0000\u0125"+
-		"I\u0001\u0000\u0000\u0000\u0126\u0127\u0005#\u0000\u0000\u0127\u012a\u0006"+
-		"%\uffff\uffff\u0000\u0128\u012a\u00032\u0019\u0000\u0129\u0126\u0001\u0000"+
-		"\u0000\u0000\u0129\u0128\u0001\u0000\u0000\u0000\u012aK\u0001\u0000\u0000"+
-		"\u0000\u0014Z`q|\u0088\u008f\u00a2\u00b6\u00bb\u00c8\u00cd\u00e2\u00e7"+
-		"\u00f1\u00ff\u0108\u0113\u0120\u0124\u0129";
+		"\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0014"+
+		"\u0001\u0015\u0001\u0015\u0001\u0015\u0001\u0015\u0001\u0015\u0001\u0015"+
+		"\u0001\u0015\u0003\u0015\u00f3\b\u0015\u0001\u0016\u0001\u0016\u0001\u0016"+
+		"\u0003\u0016\u00f8\b\u0016\u0001\u0017\u0001\u0017\u0001\u0017\u0001\u0017"+
+		"\u0001\u0017\u0001\u0017\u0001\u0018\u0001\u0018\u0003\u0018\u0102\b\u0018"+
+		"\u0001\u0019\u0001\u0019\u0001\u0019\u0001\u0019\u0003\u0019\u0108\b\u0019"+
+		"\u0001\u001a\u0001\u001a\u0001\u001a\u0001\u001a\u0001\u001a\u0001\u001b"+
+		"\u0001\u001b\u0001\u001b\u0001\u001b\u0001\u001b\u0001\u001b\u0001\u001b"+
+		"\u0001\u001b\u0001\u001b\u0001\u001b\u0003\u001b\u0119\b\u001b\u0001\u001c"+
+		"\u0001\u001c\u0001\u001c\u0001\u001c\u0001\u001d\u0001\u001d\u0001\u001d"+
+		"\u0001\u001d\u0003\u001d\u0123\b\u001d\u0001\u001e\u0001\u001e\u0001\u001e"+
+		"\u0001\u001e\u0003\u001e\u0129\b\u001e\u0001\u001f\u0001\u001f\u0001\u001f"+
+		"\u0001 \u0001 \u0001 \u0001 \u0003 \u0132\b \u0001!\u0001!\u0001!\u0001"+
+		"!\u0003!\u0138\b!\u0001\"\u0001\"\u0001#\u0001#\u0001#\u0001#\u0001#\u0001"+
+		"#\u0001#\u0001#\u0001#\u0003#\u0145\b#\u0001$\u0001$\u0003$\u0149\b$\u0001"+
+		"%\u0001%\u0001&\u0001&\u0001&\u0003&\u0150\b&\u0001&\u0000\u0000\'\u0000"+
+		"\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c"+
+		"\u001e \"$&(*,.02468:<>@BDFHJL\u0000\u0001\u0001\u0000\u001a\u001b\u0147"+
+		"\u0000N\u0001\u0000\u0000\u0000\u0002\\\u0001\u0000\u0000\u0000\u0004"+
+		"b\u0001\u0000\u0000\u0000\u0006d\u0001\u0000\u0000\u0000\bs\u0001\u0000"+
+		"\u0000\u0000\n\u007f\u0001\u0000\u0000\u0000\f\u0085\u0001\u0000\u0000"+
+		"\u0000\u000e\u0087\u0001\u0000\u0000\u0000\u0010\u008f\u0001\u0000\u0000"+
+		"\u0000\u0012\u0096\u0001\u0000\u0000\u0000\u0014\u0098\u0001\u0000\u0000"+
+		"\u0000\u0016\u009f\u0001\u0000\u0000\u0000\u0018\u00ad\u0001\u0000\u0000"+
+		"\u0000\u001a\u00af\u0001\u0000\u0000\u0000\u001c\u00b9\u0001\u0000\u0000"+
+		"\u0000\u001e\u00c3\u0001\u0000\u0000\u0000 \u00c8\u0001\u0000\u0000\u0000"+
+		"\"\u00ca\u0001\u0000\u0000\u0000$\u00d8\u0001\u0000\u0000\u0000&\u00dd"+
+		"\u0001\u0000\u0000\u0000(\u00df\u0001\u0000\u0000\u0000*\u00f2\u0001\u0000"+
+		"\u0000\u0000,\u00f7\u0001\u0000\u0000\u0000.\u00f9\u0001\u0000\u0000\u0000"+
+		"0\u0101\u0001\u0000\u0000\u00002\u0107\u0001\u0000\u0000\u00004\u0109"+
+		"\u0001\u0000\u0000\u00006\u0118\u0001\u0000\u0000\u00008\u011a\u0001\u0000"+
+		"\u0000\u0000:\u0122\u0001\u0000\u0000\u0000<\u0128\u0001\u0000\u0000\u0000"+
+		">\u012a\u0001\u0000\u0000\u0000@\u0131\u0001\u0000\u0000\u0000B\u0137"+
+		"\u0001\u0000\u0000\u0000D\u0139\u0001\u0000\u0000\u0000F\u0144\u0001\u0000"+
+		"\u0000\u0000H\u0148\u0001\u0000\u0000\u0000J\u014a\u0001\u0000\u0000\u0000"+
+		"L\u014f\u0001\u0000\u0000\u0000NO\u0005\u0001\u0000\u0000OP\u0005#\u0000"+
+		"\u0000PQ\u0006\u0000\uffff\uffff\u0000QR\u0005\u0002\u0000\u0000RS\u0003"+
+		"\u0002\u0001\u0000ST\u0003\u0004\u0002\u0000TU\u0005\u0003\u0000\u0000"+
+		"UV\u0003\u000e\u0007\u0000VW\u0005\u0004\u0000\u0000WX\u0006\u0000\uffff"+
+		"\uffff\u0000X\u0001\u0001\u0000\u0000\u0000YZ\u0006\u0001\uffff\uffff"+
+		"\u0000Z]\u0003\u0006\u0003\u0000[]\u0001\u0000\u0000\u0000\\Y\u0001\u0000"+
+		"\u0000\u0000\\[\u0001\u0000\u0000\u0000]\u0003\u0001\u0000\u0000\u0000"+
+		"^_\u0003(\u0014\u0000_`\u0003\u0004\u0002\u0000`c\u0001\u0000\u0000\u0000"+
+		"ac\u0001\u0000\u0000\u0000b^\u0001\u0000\u0000\u0000ba\u0001\u0000\u0000"+
+		"\u0000c\u0005\u0001\u0000\u0000\u0000de\u0005\u0005\u0000\u0000ef\u0005"+
+		"#\u0000\u0000fg\u0006\u0003\uffff\uffff\u0000gh\u0003\b\u0004\u0000hi"+
+		"\u0005\u0006\u0000\u0000ij\u0003\f\u0006\u0000jk\u0005\u0002\u0000\u0000"+
+		"kl\u0006\u0003\uffff\uffff\u0000lm\u0003\n\u0005\u0000m\u0007\u0001\u0000"+
+		"\u0000\u0000no\u0005\u0007\u0000\u0000op\u0005#\u0000\u0000pq\u0006\u0004"+
+		"\uffff\uffff\u0000qt\u0003\b\u0004\u0000rt\u0001\u0000\u0000\u0000sn\u0001"+
+		"\u0000\u0000\u0000sr\u0001\u0000\u0000\u0000t\t\u0001\u0000\u0000\u0000"+
+		"uv\u0005#\u0000\u0000vw\u0006\u0005\uffff\uffff\u0000wx\u0003\b\u0004"+
+		"\u0000xy\u0005\u0006\u0000\u0000yz\u0003\f\u0006\u0000z{\u0005\u0002\u0000"+
+		"\u0000{|\u0006\u0005\uffff\uffff\u0000|}\u0003\n\u0005\u0000}\u0080\u0001"+
+		"\u0000\u0000\u0000~\u0080\u0001\u0000\u0000\u0000\u007fu\u0001\u0000\u0000"+
+		"\u0000\u007f~\u0001\u0000\u0000\u0000\u0080\u000b\u0001\u0000\u0000\u0000"+
+		"\u0081\u0082\u0005\b\u0000\u0000\u0082\u0086\u0006\u0006\uffff\uffff\u0000"+
+		"\u0083\u0084\u0005\t\u0000\u0000\u0084\u0086\u0006\u0006\uffff\uffff\u0000"+
+		"\u0085\u0081\u0001\u0000\u0000\u0000\u0085\u0083\u0001\u0000\u0000\u0000"+
+		"\u0086\r\u0001\u0000\u0000\u0000\u0087\u0088\u0005\n\u0000\u0000\u0088"+
+		"\u0089\u0003\u0010\b\u0000\u0089\u008a\u0005\u000b\u0000\u0000\u008a\u000f"+
+		"\u0001\u0000\u0000\u0000\u008b\u008c\u0003\u0012\t\u0000\u008c\u008d\u0003"+
+		"\u0010\b\u0000\u008d\u0090\u0001\u0000\u0000\u0000\u008e\u0090\u0001\u0000"+
+		"\u0000\u0000\u008f\u008b\u0001\u0000\u0000\u0000\u008f\u008e\u0001\u0000"+
+		"\u0000\u0000\u0090\u0011\u0001\u0000\u0000\u0000\u0091\u0097\u0003\u0014"+
+		"\n\u0000\u0092\u0097\u0003\u0016\u000b\u0000\u0093\u0097\u0003\u001a\r"+
+		"\u0000\u0094\u0097\u0003\u001c\u000e\u0000\u0095\u0097\u0003\"\u0011\u0000"+
+		"\u0096\u0091\u0001\u0000\u0000\u0000\u0096\u0092\u0001\u0000\u0000\u0000"+
+		"\u0096\u0093\u0001\u0000\u0000\u0000\u0096\u0094\u0001\u0000\u0000\u0000"+
+		"\u0096\u0095\u0001\u0000\u0000\u0000\u0097\u0013\u0001\u0000\u0000\u0000"+
+		"\u0098\u0099\u0005#\u0000\u0000\u0099\u009a\u0006\n\uffff\uffff\u0000"+
+		"\u009a\u009b\u0005\f\u0000\u0000\u009b\u009c\u00034\u001a\u0000\u009c"+
+		"\u009d\u0006\n\uffff\uffff\u0000\u009d\u009e\u0005\u0002\u0000\u0000\u009e"+
+		"\u0015\u0001\u0000\u0000\u0000\u009f\u00a0\u0005\r\u0000\u0000\u00a0\u00a1"+
+		"\u0005\u000e\u0000\u0000\u00a1\u00a2\u00034\u001a\u0000\u00a2\u00a3\u0005"+
+		"\u000f\u0000\u0000\u00a3\u00a4\u0006\u000b\uffff\uffff\u0000\u00a4\u00a5"+
+		"\u0003\u000e\u0007\u0000\u00a5\u00a6\u0003\u0018\f\u0000\u00a6\u00a7\u0006"+
+		"\u000b\uffff\uffff\u0000\u00a7\u00a8\u0005\u0002\u0000\u0000\u00a8\u0017"+
+		"\u0001\u0000\u0000\u0000\u00a9\u00aa\u0005\u0010\u0000\u0000\u00aa\u00ab"+
+		"\u0006\f\uffff\uffff\u0000\u00ab\u00ae\u0003\u000e\u0007\u0000\u00ac\u00ae"+
+		"\u0001\u0000\u0000\u0000\u00ad\u00a9\u0001\u0000\u0000\u0000\u00ad\u00ac"+
+		"\u0001\u0000\u0000\u0000\u00ae\u0019\u0001\u0000\u0000\u0000\u00af\u00b0"+
+		"\u0005\u0011\u0000\u0000\u00b0\u00b1\u0006\r\uffff\uffff\u0000\u00b1\u00b2"+
+		"\u0003\u000e\u0007\u0000\u00b2\u00b3\u0005\u0012\u0000\u0000\u00b3\u00b4"+
+		"\u0005\u000e\u0000\u0000\u00b4\u00b5\u00034\u001a\u0000\u00b5\u00b6\u0005"+
+		"\u000f\u0000\u0000\u00b6\u00b7\u0006\r\uffff\uffff\u0000\u00b7\u00b8\u0005"+
+		"\u0002\u0000\u0000\u00b8\u001b\u0001\u0000\u0000\u0000\u00b9\u00ba\u0005"+
+		"#\u0000\u0000\u00ba\u00bb\u0005\u000e\u0000\u0000\u00bb\u00bc\u0003\u001e"+
+		"\u000f\u0000\u00bc\u00bd\u0005\u000f\u0000\u0000\u00bd\u00be\u0005\u0002"+
+		"\u0000\u0000\u00be\u001d\u0001\u0000\u0000\u0000\u00bf\u00c0\u00034\u001a"+
+		"\u0000\u00c0\u00c1\u0003 \u0010\u0000\u00c1\u00c4\u0001\u0000\u0000\u0000"+
+		"\u00c2\u00c4\u0001\u0000\u0000\u0000\u00c3\u00bf\u0001\u0000\u0000\u0000"+
+		"\u00c3\u00c2\u0001\u0000\u0000\u0000\u00c4\u001f\u0001\u0000\u0000\u0000"+
+		"\u00c5\u00c6\u0005\u0007\u0000\u0000\u00c6\u00c9\u0003\u001e\u000f\u0000"+
+		"\u00c7\u00c9\u0001\u0000\u0000\u0000\u00c8\u00c5\u0001\u0000\u0000\u0000"+
+		"\u00c8\u00c7\u0001\u0000\u0000\u0000\u00c9!\u0001\u0000\u0000\u0000\u00ca"+
+		"\u00cb\u0005\u0013\u0000\u0000\u00cb\u00cc\u0005\u000e\u0000\u0000\u00cc"+
+		"\u00cd\u0003$\u0012\u0000\u00cd\u00ce\u0005\u000f\u0000\u0000\u00ce\u00cf"+
+		"\u0005\u0002\u0000\u0000\u00cf#\u0001\u0000\u0000\u0000\u00d0\u00d1\u0006"+
+		"\u0012\uffff\uffff\u0000\u00d1\u00d2\u00034\u001a\u0000\u00d2\u00d3\u0006"+
+		"\u0012\uffff\uffff\u0000\u00d3\u00d4\u0003&\u0013\u0000\u00d4\u00d9\u0001"+
+		"\u0000\u0000\u0000\u00d5\u00d6\u0005\"\u0000\u0000\u00d6\u00d7\u0006\u0012"+
+		"\uffff\uffff\u0000\u00d7\u00d9\u0003&\u0013\u0000\u00d8\u00d0\u0001\u0000"+
+		"\u0000\u0000\u00d8\u00d5\u0001\u0000\u0000\u0000\u00d9%\u0001\u0000\u0000"+
+		"\u0000\u00da\u00db\u0005\u0007\u0000\u0000\u00db\u00de\u0003$\u0012\u0000"+
+		"\u00dc\u00de\u0001\u0000\u0000\u0000\u00dd\u00da\u0001\u0000\u0000\u0000"+
+		"\u00dd\u00dc\u0001\u0000\u0000\u0000\u00de\'\u0001\u0000\u0000\u0000\u00df"+
+		"\u00e0\u0005\u0014\u0000\u0000\u00e0\u00e1\u0005#\u0000\u0000\u00e1\u00e2"+
+		"\u0006\u0014\uffff\uffff\u0000\u00e2\u00e3\u0005\u000e\u0000\u0000\u00e3"+
+		"\u00e4\u0003*\u0015\u0000\u00e4\u00e5\u0005\u000f\u0000\u0000\u00e5\u00e6"+
+		"\u0005\u0015\u0000\u0000\u00e6\u00e7\u00030\u0018\u0000\u00e7\u00e8\u0003"+
+		"\u000e\u0007\u0000\u00e8\u00e9\u0005\u0016\u0000\u0000\u00e9\u00ea\u0005"+
+		"\u0002\u0000\u0000\u00ea)\u0001\u0000\u0000\u0000\u00eb\u00ec\u0005#\u0000"+
+		"\u0000\u00ec\u00ed\u0006\u0015\uffff\uffff\u0000\u00ed\u00ee\u0005\u0006"+
+		"\u0000\u0000\u00ee\u00ef\u0003\f\u0006\u0000\u00ef\u00f0\u0003,\u0016"+
+		"\u0000\u00f0\u00f3\u0001\u0000\u0000\u0000\u00f1\u00f3\u0001\u0000\u0000"+
+		"\u0000\u00f2\u00eb\u0001\u0000\u0000\u0000\u00f2\u00f1\u0001\u0000\u0000"+
+		"\u0000\u00f3+\u0001\u0000\u0000\u0000\u00f4\u00f5\u0005\u0007\u0000\u0000"+
+		"\u00f5\u00f8\u0003.\u0017\u0000\u00f6\u00f8\u0001\u0000\u0000\u0000\u00f7"+
+		"\u00f4\u0001\u0000\u0000\u0000\u00f7\u00f6\u0001\u0000\u0000\u0000\u00f8"+
+		"-\u0001\u0000\u0000\u0000\u00f9\u00fa\u0005#\u0000\u0000\u00fa\u00fb\u0006"+
+		"\u0017\uffff\uffff\u0000\u00fb\u00fc\u0005\u0006\u0000\u0000\u00fc\u00fd"+
+		"\u0003\f\u0006\u0000\u00fd\u00fe\u0003,\u0016\u0000\u00fe/\u0001\u0000"+
+		"\u0000\u0000\u00ff\u0102\u0003\u0006\u0003\u0000\u0100\u0102\u0001\u0000"+
+		"\u0000\u0000\u0101\u00ff\u0001\u0000\u0000\u0000\u0101\u0100\u0001\u0000"+
+		"\u0000\u0000\u01021\u0001\u0000\u0000\u0000\u0103\u0104\u0005 \u0000\u0000"+
+		"\u0104\u0108\u0006\u0019\uffff\uffff\u0000\u0105\u0106\u0005!\u0000\u0000"+
+		"\u0106\u0108\u0006\u0019\uffff\uffff\u0000\u0107\u0103\u0001\u0000\u0000"+
+		"\u0000\u0107\u0105\u0001\u0000\u0000\u0000\u01083\u0001\u0000\u0000\u0000"+
+		"\u0109\u010a\u00038\u001c\u0000\u010a\u010b\u0006\u001a\uffff\uffff\u0000"+
+		"\u010b\u010c\u00036\u001b\u0000\u010c\u010d\u0006\u001a\uffff\uffff\u0000"+
+		"\u010d5\u0001\u0000\u0000\u0000\u010e\u010f\u0005\u0017\u0000\u0000\u010f"+
+		"\u0110\u0006\u001b\uffff\uffff\u0000\u0110\u0119\u00038\u001c\u0000\u0111"+
+		"\u0112\u0005\u0018\u0000\u0000\u0112\u0113\u0006\u001b\uffff\uffff\u0000"+
+		"\u0113\u0119\u00038\u001c\u0000\u0114\u0115\u0005\u0019\u0000\u0000\u0115"+
+		"\u0116\u0006\u001b\uffff\uffff\u0000\u0116\u0119\u00038\u001c\u0000\u0117"+
+		"\u0119\u0001\u0000\u0000\u0000\u0118\u010e\u0001\u0000\u0000\u0000\u0118"+
+		"\u0111\u0001\u0000\u0000\u0000\u0118\u0114\u0001\u0000\u0000\u0000\u0118"+
+		"\u0117\u0001\u0000\u0000\u0000\u01197\u0001\u0000\u0000\u0000\u011a\u011b"+
+		"\u0003>\u001f\u0000\u011b\u011c\u0006\u001c\uffff\uffff\u0000\u011c\u011d"+
+		"\u0003:\u001d\u0000\u011d9\u0001\u0000\u0000\u0000\u011e\u011f\u0003<"+
+		"\u001e\u0000\u011f\u0120\u00038\u001c\u0000\u0120\u0123\u0001\u0000\u0000"+
+		"\u0000\u0121\u0123\u0001\u0000\u0000\u0000\u0122\u011e\u0001\u0000\u0000"+
+		"\u0000\u0122\u0121\u0001\u0000\u0000\u0000\u0123;\u0001\u0000\u0000\u0000"+
+		"\u0124\u0125\u0005\u001a\u0000\u0000\u0125\u0129\u0006\u001e\uffff\uffff"+
+		"\u0000\u0126\u0127\u0005\u001b\u0000\u0000\u0127\u0129\u0006\u001e\uffff"+
+		"\uffff\u0000\u0128\u0124\u0001\u0000\u0000\u0000\u0128\u0126\u0001\u0000"+
+		"\u0000\u0000\u0129=\u0001\u0000\u0000\u0000\u012a\u012b\u0003D\"\u0000"+
+		"\u012b\u012c\u0003@ \u0000\u012c?\u0001\u0000\u0000\u0000\u012d\u012e"+
+		"\u0003B!\u0000\u012e\u012f\u0003>\u001f\u0000\u012f\u0132\u0001\u0000"+
+		"\u0000\u0000\u0130\u0132\u0001\u0000\u0000\u0000\u0131\u012d\u0001\u0000"+
+		"\u0000\u0000\u0131\u0130\u0001\u0000\u0000\u0000\u0132A\u0001\u0000\u0000"+
+		"\u0000\u0133\u0134\u0005\u001c\u0000\u0000\u0134\u0138\u0006!\uffff\uffff"+
+		"\u0000\u0135\u0136\u0005\u001d\u0000\u0000\u0136\u0138\u0006!\uffff\uffff"+
+		"\u0000\u0137\u0133\u0001\u0000\u0000\u0000\u0137\u0135\u0001\u0000\u0000"+
+		"\u0000\u0138C\u0001\u0000\u0000\u0000\u0139\u013a\u0003F#\u0000\u013a"+
+		"E\u0001\u0000\u0000\u0000\u013b\u013c\u0005\u000e\u0000\u0000\u013c\u013d"+
+		"\u0006#\uffff\uffff\u0000\u013d\u013e\u00034\u001a\u0000\u013e\u013f\u0005"+
+		"\u000f\u0000\u0000\u013f\u0140\u0006#\uffff\uffff\u0000\u0140\u0145\u0001"+
+		"\u0000\u0000\u0000\u0141\u0142\u0003H$\u0000\u0142\u0143\u0003L&\u0000"+
+		"\u0143\u0145\u0001\u0000\u0000\u0000\u0144\u013b\u0001\u0000\u0000\u0000"+
+		"\u0144\u0141\u0001\u0000\u0000\u0000\u0145G\u0001\u0000\u0000\u0000\u0146"+
+		"\u0149\u0003J%\u0000\u0147\u0149\u0001\u0000\u0000\u0000\u0148\u0146\u0001"+
+		"\u0000\u0000\u0000\u0148\u0147\u0001\u0000\u0000\u0000\u0149I\u0001\u0000"+
+		"\u0000\u0000\u014a\u014b\u0007\u0000\u0000\u0000\u014bK\u0001\u0000\u0000"+
+		"\u0000\u014c\u014d\u0005#\u0000\u0000\u014d\u0150\u0006&\uffff\uffff\u0000"+
+		"\u014e\u0150\u00032\u0019\u0000\u014f\u014c\u0001\u0000\u0000\u0000\u014f"+
+		"\u014e\u0001\u0000\u0000\u0000\u0150M\u0001\u0000\u0000\u0000\u0018\\"+
+		"bs\u007f\u0085\u008f\u0096\u00ad\u00c3\u00c8\u00d8\u00dd\u00f2\u00f7\u0101"+
+		"\u0107\u0118\u0122\u0128\u0131\u0137\u0144\u0148\u014f";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

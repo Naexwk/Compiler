@@ -278,12 +278,12 @@ class littleDuckListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by littleDuckParser#signo.
-    def enterSigno(self, ctx:littleDuckParser.SignoContext):
+    # Enter a parse tree produced by littleDuckParser#exp_signo.
+    def enterExp_signo(self, ctx:littleDuckParser.Exp_signoContext):
         pass
 
-    # Exit a parse tree produced by littleDuckParser#signo.
-    def exitSigno(self, ctx:littleDuckParser.SignoContext):
+    # Exit a parse tree produced by littleDuckParser#exp_signo.
+    def exitExp_signo(self, ctx:littleDuckParser.Exp_signoContext):
         pass
 
 
@@ -338,6 +338,15 @@ class littleDuckListener(ParseTreeListener):
 
     # Exit a parse tree produced by littleDuckParser#opc_signo.
     def exitOpc_signo(self, ctx:littleDuckParser.Opc_signoContext):
+        pass
+
+
+    # Enter a parse tree produced by littleDuckParser#signo.
+    def enterSigno(self, ctx:littleDuckParser.SignoContext):
+        pass
+
+    # Exit a parse tree produced by littleDuckParser#signo.
+    def exitSigno(self, ctx:littleDuckParser.SignoContext):
         pass
 
 
