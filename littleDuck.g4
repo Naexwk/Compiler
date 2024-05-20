@@ -11,11 +11,7 @@ program.variableTable["owner"] = $ID.text
  ';' opc_vars optional_funcs 'main' body 'end'
 {
 program.insertQuad('end', None, None, None)
-print(program.variableTable)
-print(program.quadruples)
-print(program.stack_operands)
-print(program.stack_operator)
-print(program.stack_jumps)
+print("Lista de cuádruplos: \n", program.quadruples)
 };
 
 opc_vars: 
@@ -44,7 +40,7 @@ program.declareNewVariable($ID.text)
 } mas_vars ':' type ';' {program.clearTempVarDeclaration()} mas_dec_vars | ;
 
 type: 'int' {program.currentType = "int"}| 'float'
-{program.currentType = "float"};
+{program.currentType = "float"} | 'bool' {program.currentType = "bool"};
 
 body: '{' statement '}';
 
@@ -60,7 +56,6 @@ program.variableDeclared($ID.text)
 {
 if program.variableDeclared($ID.text):
     program.assignInsertQuad('=', program.stack_operands.pop(), None, $ID.text)
-    program.clearTempVars()
 } ';';
 
 condition: 'if' '(' expresion ')' {
@@ -88,11 +83,9 @@ mas_f_call: ',' opc_f_call | ;
 
 print: 'print' '(' opc_print ')' ';';
 
-opc_print: {print("hanlo")} expresion 
-{program.insertQuad('print', program.stack_operands.pop(), None, None)
-program.clearTempVars()}
- mas_print | CTE_STRING {program.insertQuad('print', $CTE_STRING.text, None, None)
-program.clearTempVars()} mas_print;
+opc_print: expresion 
+{program.insertQuad('print', program.stack_operands.pop(), None, None)}
+ mas_print | CTE_STRING {program.insertQuad('print', $CTE_STRING.text, None, None)} mas_print;
 
 mas_print: ',' opc_print | ;
 
@@ -118,7 +111,8 @@ program.declareNewVariable($ID.text)
 
 vars_funcs: vars | ;
 
-cte: CTE_INT {program.stack_operands.append(int($CTE_INT.text))}  | CTE_FLOAT {program.stack_operands.append(float($CTE_FLOAT.text))};
+cte: CTE_INT {program.stack_operands.append(int($CTE_INT.text))}  | CTE_FLOAT {
+program.stack_operands.append(float($CTE_FLOAT.text))};
 
 expresion: exp {program.clearQuadrupleList('+')} opc_expresion {program.clearQuadrupleList('eoe')};
 
@@ -161,11 +155,18 @@ expresion ')'
 {
 program.clearQuadrupleList(')')
 }
-| opc_signo opc_factor_prime;
+| opc_signo opc_factor_prime {
+if $opc_signo.text == "-":
+    op1 = program.stack_operands.pop()
+    type1 = type(op1).__name__
+    if type1 == "str":
+        type1 = program.getVariable(program.currentLevel, op1).vtype
+    program.insertQuad('*', op1, -1, program.newTempVar('*', type1, "int"))
+};
 
 opc_signo: signo | ;
 
-signo: '+' | '-';
+signo: '+' | '-' ;
 
 opc_factor_prime: ID
 {
@@ -178,6 +179,6 @@ if program.variableDeclared($ID.text):
 NEWLINE: [\r\n\t]+ -> skip;
 WHITESPACE: ' ' -> skip;
 CTE_INT: [0-9]+;
-CTE_FLOAT: '-'?[0-9]+('.'[0-9]+)?;
+CTE_FLOAT: [0-9]+('.'[0-9]+)?;
 CTE_STRING: '"'~["]*'"';
 ID: [a-zA-Z_]([a-zA-Z0-9_])*;

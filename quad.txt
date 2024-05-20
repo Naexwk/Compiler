@@ -1,15 +1,8 @@
 program quad;
 
-var a, b, c: float;
-
-void a (param1 : int, param2 : int) [
-    var funcVar : int;
-    {}
-];
+var a, b, c: int;
 
 main {
-    if (0){
-
-    };
+    a =  -1;
 }
 end

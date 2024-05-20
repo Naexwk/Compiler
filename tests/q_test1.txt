@@ -1,0 +1,7 @@
+program quad;
+
+var a, b, c: float; d: bool;
+main {
+    d = b > a * b + c * (b + a * c);
+}
+end

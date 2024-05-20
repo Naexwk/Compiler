@@ -13,7 +13,7 @@ from Middleman import *
 
 def serializedATN():
     return [
-        4,1,35,338,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,36,341,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
         7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,
@@ -22,109 +22,110 @@ def serializedATN():
         0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,3,1,93,8,1,1,2,1,2,
         1,2,1,2,3,2,99,8,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,4,1,
         4,1,4,1,4,1,4,3,4,116,8,4,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,
-        5,3,5,128,8,5,1,6,1,6,1,6,1,6,3,6,134,8,6,1,7,1,7,1,7,1,7,1,8,1,
-        8,1,8,1,8,3,8,144,8,8,1,9,1,9,1,9,1,9,1,9,3,9,151,8,9,1,10,1,10,
-        1,10,1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,
-        1,11,1,11,1,12,1,12,1,12,1,12,3,12,174,8,12,1,13,1,13,1,13,1,13,
-        1,13,1,13,1,13,1,13,1,13,1,13,1,14,1,14,1,14,1,14,1,14,1,14,1,15,
-        1,15,1,15,1,15,3,15,196,8,15,1,16,1,16,1,16,3,16,201,8,16,1,17,1,
-        17,1,17,1,17,1,17,1,17,1,18,1,18,1,18,1,18,1,18,1,18,1,18,1,18,3,
-        18,217,8,18,1,19,1,19,1,19,3,19,222,8,19,1,20,1,20,1,20,1,20,1,20,
-        1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,21,1,21,1,21,1,21,1,21,1,21,
-        1,21,3,21,243,8,21,1,22,1,22,1,22,3,22,248,8,22,1,23,1,23,1,23,1,
-        23,1,23,1,23,1,24,1,24,3,24,258,8,24,1,25,1,25,1,25,1,25,3,25,264,
-        8,25,1,26,1,26,1,26,1,26,1,26,1,27,1,27,1,27,1,27,1,27,1,27,1,27,
-        1,27,1,27,1,27,3,27,281,8,27,1,28,1,28,1,28,1,28,1,29,1,29,1,29,
-        1,29,3,29,291,8,29,1,30,1,30,1,30,1,30,3,30,297,8,30,1,31,1,31,1,
-        31,1,32,1,32,1,32,1,32,3,32,306,8,32,1,33,1,33,1,33,1,33,3,33,312,
-        8,33,1,34,1,34,1,35,1,35,1,35,1,35,1,35,1,35,1,35,1,35,1,35,3,35,
-        325,8,35,1,36,1,36,3,36,329,8,36,1,37,1,37,1,38,1,38,1,38,3,38,336,
-        8,38,1,38,0,0,39,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,
-        36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,0,
-        1,1,0,26,27,327,0,78,1,0,0,0,2,92,1,0,0,0,4,98,1,0,0,0,6,100,1,0,
-        0,0,8,115,1,0,0,0,10,127,1,0,0,0,12,133,1,0,0,0,14,135,1,0,0,0,16,
-        143,1,0,0,0,18,150,1,0,0,0,20,152,1,0,0,0,22,159,1,0,0,0,24,173,
-        1,0,0,0,26,175,1,0,0,0,28,185,1,0,0,0,30,195,1,0,0,0,32,200,1,0,
-        0,0,34,202,1,0,0,0,36,216,1,0,0,0,38,221,1,0,0,0,40,223,1,0,0,0,
-        42,242,1,0,0,0,44,247,1,0,0,0,46,249,1,0,0,0,48,257,1,0,0,0,50,263,
-        1,0,0,0,52,265,1,0,0,0,54,280,1,0,0,0,56,282,1,0,0,0,58,290,1,0,
-        0,0,60,296,1,0,0,0,62,298,1,0,0,0,64,305,1,0,0,0,66,311,1,0,0,0,
-        68,313,1,0,0,0,70,324,1,0,0,0,72,328,1,0,0,0,74,330,1,0,0,0,76,335,
-        1,0,0,0,78,79,5,1,0,0,79,80,5,35,0,0,80,81,6,0,-1,0,81,82,5,2,0,
-        0,82,83,3,2,1,0,83,84,3,4,2,0,84,85,5,3,0,0,85,86,3,14,7,0,86,87,
-        5,4,0,0,87,88,6,0,-1,0,88,1,1,0,0,0,89,90,6,1,-1,0,90,93,3,6,3,0,
-        91,93,1,0,0,0,92,89,1,0,0,0,92,91,1,0,0,0,93,3,1,0,0,0,94,95,3,40,
-        20,0,95,96,3,4,2,0,96,99,1,0,0,0,97,99,1,0,0,0,98,94,1,0,0,0,98,
-        97,1,0,0,0,99,5,1,0,0,0,100,101,5,5,0,0,101,102,5,35,0,0,102,103,
-        6,3,-1,0,103,104,3,8,4,0,104,105,5,6,0,0,105,106,3,12,6,0,106,107,
-        5,2,0,0,107,108,6,3,-1,0,108,109,3,10,5,0,109,7,1,0,0,0,110,111,
-        5,7,0,0,111,112,5,35,0,0,112,113,6,4,-1,0,113,116,3,8,4,0,114,116,
-        1,0,0,0,115,110,1,0,0,0,115,114,1,0,0,0,116,9,1,0,0,0,117,118,5,
-        35,0,0,118,119,6,5,-1,0,119,120,3,8,4,0,120,121,5,6,0,0,121,122,
-        3,12,6,0,122,123,5,2,0,0,123,124,6,5,-1,0,124,125,3,10,5,0,125,128,
-        1,0,0,0,126,128,1,0,0,0,127,117,1,0,0,0,127,126,1,0,0,0,128,11,1,
-        0,0,0,129,130,5,8,0,0,130,134,6,6,-1,0,131,132,5,9,0,0,132,134,6,
-        6,-1,0,133,129,1,0,0,0,133,131,1,0,0,0,134,13,1,0,0,0,135,136,5,
-        10,0,0,136,137,3,16,8,0,137,138,5,11,0,0,138,15,1,0,0,0,139,140,
-        3,18,9,0,140,141,3,16,8,0,141,144,1,0,0,0,142,144,1,0,0,0,143,139,
-        1,0,0,0,143,142,1,0,0,0,144,17,1,0,0,0,145,151,3,20,10,0,146,151,
-        3,22,11,0,147,151,3,26,13,0,148,151,3,28,14,0,149,151,3,34,17,0,
-        150,145,1,0,0,0,150,146,1,0,0,0,150,147,1,0,0,0,150,148,1,0,0,0,
-        150,149,1,0,0,0,151,19,1,0,0,0,152,153,5,35,0,0,153,154,6,10,-1,
-        0,154,155,5,12,0,0,155,156,3,52,26,0,156,157,6,10,-1,0,157,158,5,
-        2,0,0,158,21,1,0,0,0,159,160,5,13,0,0,160,161,5,14,0,0,161,162,3,
-        52,26,0,162,163,5,15,0,0,163,164,6,11,-1,0,164,165,3,14,7,0,165,
-        166,3,24,12,0,166,167,6,11,-1,0,167,168,5,2,0,0,168,23,1,0,0,0,169,
-        170,5,16,0,0,170,171,6,12,-1,0,171,174,3,14,7,0,172,174,1,0,0,0,
-        173,169,1,0,0,0,173,172,1,0,0,0,174,25,1,0,0,0,175,176,5,17,0,0,
-        176,177,6,13,-1,0,177,178,3,14,7,0,178,179,5,18,0,0,179,180,5,14,
-        0,0,180,181,3,52,26,0,181,182,5,15,0,0,182,183,6,13,-1,0,183,184,
-        5,2,0,0,184,27,1,0,0,0,185,186,5,35,0,0,186,187,5,14,0,0,187,188,
-        3,30,15,0,188,189,5,15,0,0,189,190,5,2,0,0,190,29,1,0,0,0,191,192,
-        3,52,26,0,192,193,3,32,16,0,193,196,1,0,0,0,194,196,1,0,0,0,195,
-        191,1,0,0,0,195,194,1,0,0,0,196,31,1,0,0,0,197,198,5,7,0,0,198,201,
-        3,30,15,0,199,201,1,0,0,0,200,197,1,0,0,0,200,199,1,0,0,0,201,33,
-        1,0,0,0,202,203,5,19,0,0,203,204,5,14,0,0,204,205,3,36,18,0,205,
-        206,5,15,0,0,206,207,5,2,0,0,207,35,1,0,0,0,208,209,6,18,-1,0,209,
-        210,3,52,26,0,210,211,6,18,-1,0,211,212,3,38,19,0,212,217,1,0,0,
-        0,213,214,5,34,0,0,214,215,6,18,-1,0,215,217,3,38,19,0,216,208,1,
-        0,0,0,216,213,1,0,0,0,217,37,1,0,0,0,218,219,5,7,0,0,219,222,3,36,
-        18,0,220,222,1,0,0,0,221,218,1,0,0,0,221,220,1,0,0,0,222,39,1,0,
-        0,0,223,224,5,20,0,0,224,225,5,35,0,0,225,226,6,20,-1,0,226,227,
-        5,14,0,0,227,228,3,42,21,0,228,229,5,15,0,0,229,230,5,21,0,0,230,
-        231,3,48,24,0,231,232,3,14,7,0,232,233,5,22,0,0,233,234,5,2,0,0,
-        234,41,1,0,0,0,235,236,5,35,0,0,236,237,6,21,-1,0,237,238,5,6,0,
-        0,238,239,3,12,6,0,239,240,3,44,22,0,240,243,1,0,0,0,241,243,1,0,
-        0,0,242,235,1,0,0,0,242,241,1,0,0,0,243,43,1,0,0,0,244,245,5,7,0,
-        0,245,248,3,46,23,0,246,248,1,0,0,0,247,244,1,0,0,0,247,246,1,0,
-        0,0,248,45,1,0,0,0,249,250,5,35,0,0,250,251,6,23,-1,0,251,252,5,
-        6,0,0,252,253,3,12,6,0,253,254,3,44,22,0,254,47,1,0,0,0,255,258,
-        3,6,3,0,256,258,1,0,0,0,257,255,1,0,0,0,257,256,1,0,0,0,258,49,1,
-        0,0,0,259,260,5,32,0,0,260,264,6,25,-1,0,261,262,5,33,0,0,262,264,
-        6,25,-1,0,263,259,1,0,0,0,263,261,1,0,0,0,264,51,1,0,0,0,265,266,
-        3,56,28,0,266,267,6,26,-1,0,267,268,3,54,27,0,268,269,6,26,-1,0,
-        269,53,1,0,0,0,270,271,5,23,0,0,271,272,6,27,-1,0,272,281,3,56,28,
-        0,273,274,5,24,0,0,274,275,6,27,-1,0,275,281,3,56,28,0,276,277,5,
-        25,0,0,277,278,6,27,-1,0,278,281,3,56,28,0,279,281,1,0,0,0,280,270,
-        1,0,0,0,280,273,1,0,0,0,280,276,1,0,0,0,280,279,1,0,0,0,281,55,1,
-        0,0,0,282,283,3,62,31,0,283,284,6,28,-1,0,284,285,3,58,29,0,285,
-        57,1,0,0,0,286,287,3,60,30,0,287,288,3,56,28,0,288,291,1,0,0,0,289,
-        291,1,0,0,0,290,286,1,0,0,0,290,289,1,0,0,0,291,59,1,0,0,0,292,293,
-        5,26,0,0,293,297,6,30,-1,0,294,295,5,27,0,0,295,297,6,30,-1,0,296,
-        292,1,0,0,0,296,294,1,0,0,0,297,61,1,0,0,0,298,299,3,68,34,0,299,
-        300,3,64,32,0,300,63,1,0,0,0,301,302,3,66,33,0,302,303,3,62,31,0,
-        303,306,1,0,0,0,304,306,1,0,0,0,305,301,1,0,0,0,305,304,1,0,0,0,
-        306,65,1,0,0,0,307,308,5,28,0,0,308,312,6,33,-1,0,309,310,5,29,0,
-        0,310,312,6,33,-1,0,311,307,1,0,0,0,311,309,1,0,0,0,312,67,1,0,0,
-        0,313,314,3,70,35,0,314,69,1,0,0,0,315,316,5,14,0,0,316,317,6,35,
-        -1,0,317,318,3,52,26,0,318,319,5,15,0,0,319,320,6,35,-1,0,320,325,
-        1,0,0,0,321,322,3,72,36,0,322,323,3,76,38,0,323,325,1,0,0,0,324,
-        315,1,0,0,0,324,321,1,0,0,0,325,71,1,0,0,0,326,329,3,74,37,0,327,
-        329,1,0,0,0,328,326,1,0,0,0,328,327,1,0,0,0,329,73,1,0,0,0,330,331,
-        7,0,0,0,331,75,1,0,0,0,332,333,5,35,0,0,333,336,6,38,-1,0,334,336,
-        3,50,25,0,335,332,1,0,0,0,335,334,1,0,0,0,336,77,1,0,0,0,24,92,98,
-        115,127,133,143,150,173,195,200,216,221,242,247,257,263,280,290,
-        296,305,311,324,328,335
+        5,3,5,128,8,5,1,6,1,6,1,6,1,6,1,6,1,6,3,6,136,8,6,1,7,1,7,1,7,1,
+        7,1,8,1,8,1,8,1,8,3,8,146,8,8,1,9,1,9,1,9,1,9,1,9,3,9,153,8,9,1,
+        10,1,10,1,10,1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,11,1,11,1,11,1,
+        11,1,11,1,11,1,11,1,12,1,12,1,12,1,12,3,12,176,8,12,1,13,1,13,1,
+        13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,14,1,14,1,14,1,14,1,14,1,
+        14,1,15,1,15,1,15,1,15,3,15,198,8,15,1,16,1,16,1,16,3,16,203,8,16,
+        1,17,1,17,1,17,1,17,1,17,1,17,1,18,1,18,1,18,1,18,1,18,1,18,1,18,
+        1,18,3,18,219,8,18,1,19,1,19,1,19,3,19,224,8,19,1,20,1,20,1,20,1,
+        20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,21,1,21,1,21,1,21,1,
+        21,1,21,1,21,3,21,245,8,21,1,22,1,22,1,22,3,22,250,8,22,1,23,1,23,
+        1,23,1,23,1,23,1,23,1,24,1,24,3,24,260,8,24,1,25,1,25,1,25,1,25,
+        3,25,266,8,25,1,26,1,26,1,26,1,26,1,26,1,27,1,27,1,27,1,27,1,27,
+        1,27,1,27,1,27,1,27,1,27,3,27,283,8,27,1,28,1,28,1,28,1,28,1,29,
+        1,29,1,29,1,29,3,29,293,8,29,1,30,1,30,1,30,1,30,3,30,299,8,30,1,
+        31,1,31,1,31,1,32,1,32,1,32,1,32,3,32,308,8,32,1,33,1,33,1,33,1,
+        33,3,33,314,8,33,1,34,1,34,1,35,1,35,1,35,1,35,1,35,1,35,1,35,1,
+        35,1,35,1,35,3,35,328,8,35,1,36,1,36,3,36,332,8,36,1,37,1,37,1,38,
+        1,38,1,38,3,38,339,8,38,1,38,0,0,39,0,2,4,6,8,10,12,14,16,18,20,
+        22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,
+        66,68,70,72,74,76,0,1,1,0,27,28,331,0,78,1,0,0,0,2,92,1,0,0,0,4,
+        98,1,0,0,0,6,100,1,0,0,0,8,115,1,0,0,0,10,127,1,0,0,0,12,135,1,0,
+        0,0,14,137,1,0,0,0,16,145,1,0,0,0,18,152,1,0,0,0,20,154,1,0,0,0,
+        22,161,1,0,0,0,24,175,1,0,0,0,26,177,1,0,0,0,28,187,1,0,0,0,30,197,
+        1,0,0,0,32,202,1,0,0,0,34,204,1,0,0,0,36,218,1,0,0,0,38,223,1,0,
+        0,0,40,225,1,0,0,0,42,244,1,0,0,0,44,249,1,0,0,0,46,251,1,0,0,0,
+        48,259,1,0,0,0,50,265,1,0,0,0,52,267,1,0,0,0,54,282,1,0,0,0,56,284,
+        1,0,0,0,58,292,1,0,0,0,60,298,1,0,0,0,62,300,1,0,0,0,64,307,1,0,
+        0,0,66,313,1,0,0,0,68,315,1,0,0,0,70,327,1,0,0,0,72,331,1,0,0,0,
+        74,333,1,0,0,0,76,338,1,0,0,0,78,79,5,1,0,0,79,80,5,36,0,0,80,81,
+        6,0,-1,0,81,82,5,2,0,0,82,83,3,2,1,0,83,84,3,4,2,0,84,85,5,3,0,0,
+        85,86,3,14,7,0,86,87,5,4,0,0,87,88,6,0,-1,0,88,1,1,0,0,0,89,90,6,
+        1,-1,0,90,93,3,6,3,0,91,93,1,0,0,0,92,89,1,0,0,0,92,91,1,0,0,0,93,
+        3,1,0,0,0,94,95,3,40,20,0,95,96,3,4,2,0,96,99,1,0,0,0,97,99,1,0,
+        0,0,98,94,1,0,0,0,98,97,1,0,0,0,99,5,1,0,0,0,100,101,5,5,0,0,101,
+        102,5,36,0,0,102,103,6,3,-1,0,103,104,3,8,4,0,104,105,5,6,0,0,105,
+        106,3,12,6,0,106,107,5,2,0,0,107,108,6,3,-1,0,108,109,3,10,5,0,109,
+        7,1,0,0,0,110,111,5,7,0,0,111,112,5,36,0,0,112,113,6,4,-1,0,113,
+        116,3,8,4,0,114,116,1,0,0,0,115,110,1,0,0,0,115,114,1,0,0,0,116,
+        9,1,0,0,0,117,118,5,36,0,0,118,119,6,5,-1,0,119,120,3,8,4,0,120,
+        121,5,6,0,0,121,122,3,12,6,0,122,123,5,2,0,0,123,124,6,5,-1,0,124,
+        125,3,10,5,0,125,128,1,0,0,0,126,128,1,0,0,0,127,117,1,0,0,0,127,
+        126,1,0,0,0,128,11,1,0,0,0,129,130,5,8,0,0,130,136,6,6,-1,0,131,
+        132,5,9,0,0,132,136,6,6,-1,0,133,134,5,10,0,0,134,136,6,6,-1,0,135,
+        129,1,0,0,0,135,131,1,0,0,0,135,133,1,0,0,0,136,13,1,0,0,0,137,138,
+        5,11,0,0,138,139,3,16,8,0,139,140,5,12,0,0,140,15,1,0,0,0,141,142,
+        3,18,9,0,142,143,3,16,8,0,143,146,1,0,0,0,144,146,1,0,0,0,145,141,
+        1,0,0,0,145,144,1,0,0,0,146,17,1,0,0,0,147,153,3,20,10,0,148,153,
+        3,22,11,0,149,153,3,26,13,0,150,153,3,28,14,0,151,153,3,34,17,0,
+        152,147,1,0,0,0,152,148,1,0,0,0,152,149,1,0,0,0,152,150,1,0,0,0,
+        152,151,1,0,0,0,153,19,1,0,0,0,154,155,5,36,0,0,155,156,6,10,-1,
+        0,156,157,5,13,0,0,157,158,3,52,26,0,158,159,6,10,-1,0,159,160,5,
+        2,0,0,160,21,1,0,0,0,161,162,5,14,0,0,162,163,5,15,0,0,163,164,3,
+        52,26,0,164,165,5,16,0,0,165,166,6,11,-1,0,166,167,3,14,7,0,167,
+        168,3,24,12,0,168,169,6,11,-1,0,169,170,5,2,0,0,170,23,1,0,0,0,171,
+        172,5,17,0,0,172,173,6,12,-1,0,173,176,3,14,7,0,174,176,1,0,0,0,
+        175,171,1,0,0,0,175,174,1,0,0,0,176,25,1,0,0,0,177,178,5,18,0,0,
+        178,179,6,13,-1,0,179,180,3,14,7,0,180,181,5,19,0,0,181,182,5,15,
+        0,0,182,183,3,52,26,0,183,184,5,16,0,0,184,185,6,13,-1,0,185,186,
+        5,2,0,0,186,27,1,0,0,0,187,188,5,36,0,0,188,189,5,15,0,0,189,190,
+        3,30,15,0,190,191,5,16,0,0,191,192,5,2,0,0,192,29,1,0,0,0,193,194,
+        3,52,26,0,194,195,3,32,16,0,195,198,1,0,0,0,196,198,1,0,0,0,197,
+        193,1,0,0,0,197,196,1,0,0,0,198,31,1,0,0,0,199,200,5,7,0,0,200,203,
+        3,30,15,0,201,203,1,0,0,0,202,199,1,0,0,0,202,201,1,0,0,0,203,33,
+        1,0,0,0,204,205,5,20,0,0,205,206,5,15,0,0,206,207,3,36,18,0,207,
+        208,5,16,0,0,208,209,5,2,0,0,209,35,1,0,0,0,210,211,6,18,-1,0,211,
+        212,3,52,26,0,212,213,6,18,-1,0,213,214,3,38,19,0,214,219,1,0,0,
+        0,215,216,5,35,0,0,216,217,6,18,-1,0,217,219,3,38,19,0,218,210,1,
+        0,0,0,218,215,1,0,0,0,219,37,1,0,0,0,220,221,5,7,0,0,221,224,3,36,
+        18,0,222,224,1,0,0,0,223,220,1,0,0,0,223,222,1,0,0,0,224,39,1,0,
+        0,0,225,226,5,21,0,0,226,227,5,36,0,0,227,228,6,20,-1,0,228,229,
+        5,15,0,0,229,230,3,42,21,0,230,231,5,16,0,0,231,232,5,22,0,0,232,
+        233,3,48,24,0,233,234,3,14,7,0,234,235,5,23,0,0,235,236,5,2,0,0,
+        236,41,1,0,0,0,237,238,5,36,0,0,238,239,6,21,-1,0,239,240,5,6,0,
+        0,240,241,3,12,6,0,241,242,3,44,22,0,242,245,1,0,0,0,243,245,1,0,
+        0,0,244,237,1,0,0,0,244,243,1,0,0,0,245,43,1,0,0,0,246,247,5,7,0,
+        0,247,250,3,46,23,0,248,250,1,0,0,0,249,246,1,0,0,0,249,248,1,0,
+        0,0,250,45,1,0,0,0,251,252,5,36,0,0,252,253,6,23,-1,0,253,254,5,
+        6,0,0,254,255,3,12,6,0,255,256,3,44,22,0,256,47,1,0,0,0,257,260,
+        3,6,3,0,258,260,1,0,0,0,259,257,1,0,0,0,259,258,1,0,0,0,260,49,1,
+        0,0,0,261,262,5,33,0,0,262,266,6,25,-1,0,263,264,5,34,0,0,264,266,
+        6,25,-1,0,265,261,1,0,0,0,265,263,1,0,0,0,266,51,1,0,0,0,267,268,
+        3,56,28,0,268,269,6,26,-1,0,269,270,3,54,27,0,270,271,6,26,-1,0,
+        271,53,1,0,0,0,272,273,5,24,0,0,273,274,6,27,-1,0,274,283,3,56,28,
+        0,275,276,5,25,0,0,276,277,6,27,-1,0,277,283,3,56,28,0,278,279,5,
+        26,0,0,279,280,6,27,-1,0,280,283,3,56,28,0,281,283,1,0,0,0,282,272,
+        1,0,0,0,282,275,1,0,0,0,282,278,1,0,0,0,282,281,1,0,0,0,283,55,1,
+        0,0,0,284,285,3,62,31,0,285,286,6,28,-1,0,286,287,3,58,29,0,287,
+        57,1,0,0,0,288,289,3,60,30,0,289,290,3,56,28,0,290,293,1,0,0,0,291,
+        293,1,0,0,0,292,288,1,0,0,0,292,291,1,0,0,0,293,59,1,0,0,0,294,295,
+        5,27,0,0,295,299,6,30,-1,0,296,297,5,28,0,0,297,299,6,30,-1,0,298,
+        294,1,0,0,0,298,296,1,0,0,0,299,61,1,0,0,0,300,301,3,68,34,0,301,
+        302,3,64,32,0,302,63,1,0,0,0,303,304,3,66,33,0,304,305,3,62,31,0,
+        305,308,1,0,0,0,306,308,1,0,0,0,307,303,1,0,0,0,307,306,1,0,0,0,
+        308,65,1,0,0,0,309,310,5,29,0,0,310,314,6,33,-1,0,311,312,5,30,0,
+        0,312,314,6,33,-1,0,313,309,1,0,0,0,313,311,1,0,0,0,314,67,1,0,0,
+        0,315,316,3,70,35,0,316,69,1,0,0,0,317,318,5,15,0,0,318,319,6,35,
+        -1,0,319,320,3,52,26,0,320,321,5,16,0,0,321,322,6,35,-1,0,322,328,
+        1,0,0,0,323,324,3,72,36,0,324,325,3,76,38,0,325,326,6,35,-1,0,326,
+        328,1,0,0,0,327,317,1,0,0,0,327,323,1,0,0,0,328,71,1,0,0,0,329,332,
+        3,74,37,0,330,332,1,0,0,0,331,329,1,0,0,0,331,330,1,0,0,0,332,73,
+        1,0,0,0,333,334,7,0,0,0,334,75,1,0,0,0,335,336,5,36,0,0,336,339,
+        6,38,-1,0,337,339,3,50,25,0,338,335,1,0,0,0,338,337,1,0,0,0,339,
+        77,1,0,0,0,24,92,98,115,127,135,145,152,175,197,202,218,223,244,
+        249,259,265,282,292,298,307,313,327,331,338
     ]
 
 class littleDuckParser ( Parser ):
@@ -138,10 +139,11 @@ class littleDuckParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "'program'", "';'", "'main'", "'end'", 
-                     "'var'", "':'", "','", "'int'", "'float'", "'{'", "'}'", 
-                     "'='", "'if'", "'('", "')'", "'else'", "'do'", "'while'", 
-                     "'print'", "'void'", "'['", "']'", "'>'", "'<'", "'!='", 
-                     "'+'", "'-'", "'*'", "'/'", "<INVALID>", "' '" ]
+                     "'var'", "':'", "','", "'int'", "'float'", "'bool'", 
+                     "'{'", "'}'", "'='", "'if'", "'('", "')'", "'else'", 
+                     "'do'", "'while'", "'print'", "'void'", "'['", "']'", 
+                     "'>'", "'<'", "'!='", "'+'", "'-'", "'*'", "'/'", "<INVALID>", 
+                     "' '" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
@@ -150,8 +152,9 @@ class littleDuckParser ( Parser ):
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "NEWLINE", "WHITESPACE", 
-                      "CTE_INT", "CTE_FLOAT", "CTE_STRING", "ID" ]
+                      "<INVALID>", "<INVALID>", "<INVALID>", "NEWLINE", 
+                      "WHITESPACE", "CTE_INT", "CTE_FLOAT", "CTE_STRING", 
+                      "ID" ]
 
     RULE_programa = 0
     RULE_opc_vars = 1
@@ -232,12 +235,13 @@ class littleDuckParser ( Parser ):
     T__26=27
     T__27=28
     T__28=29
-    NEWLINE=30
-    WHITESPACE=31
-    CTE_INT=32
-    CTE_FLOAT=33
-    CTE_STRING=34
-    ID=35
+    T__29=30
+    NEWLINE=31
+    WHITESPACE=32
+    CTE_INT=33
+    CTE_FLOAT=34
+    CTE_STRING=35
+    ID=36
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -312,11 +316,7 @@ class littleDuckParser ( Parser ):
             self.match(littleDuckParser.T__3)
 
             program.insertQuad('end', None, None, None)
-            print(program.variableTable)
-            print(program.quadruples)
-            print(program.stack_operands)
-            print(program.stack_operator)
-            print(program.stack_jumps)
+            print("Lista de cuádruplos: \n", program.quadruples)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -368,7 +368,7 @@ class littleDuckParser ( Parser ):
                 self.state = 90
                 self.vars_()
                 pass
-            elif token in [3, 20]:
+            elif token in [3, 21]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -421,7 +421,7 @@ class littleDuckParser ( Parser ):
             self.state = 98
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [20]:
+            if token in [21]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 94
                 self.funcs()
@@ -624,7 +624,7 @@ class littleDuckParser ( Parser ):
             self.state = 127
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [35]:
+            if token in [36]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 117
                 localctx._ID = self.match(littleDuckParser.ID)
@@ -643,7 +643,7 @@ class littleDuckParser ( Parser ):
                 self.state = 124
                 self.mas_dec_vars()
                 pass
-            elif token in [3, 10, 20]:
+            elif token in [3, 11, 21]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -686,7 +686,7 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.TypeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 12, self.RULE_type)
         try:
-            self.state = 133
+            self.state = 135
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [8]:
@@ -700,6 +700,12 @@ class littleDuckParser ( Parser ):
                 self.state = 131
                 self.match(littleDuckParser.T__8)
                 program.currentType = "float"
+                pass
+            elif token in [10]:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 133
+                self.match(littleDuckParser.T__9)
+                program.currentType = "bool"
                 pass
             else:
                 raise NoViableAltException(self)
@@ -744,12 +750,12 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_body)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 135
-            self.match(littleDuckParser.T__9)
-            self.state = 136
-            self.statement()
             self.state = 137
             self.match(littleDuckParser.T__10)
+            self.state = 138
+            self.statement()
+            self.state = 139
+            self.match(littleDuckParser.T__11)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -793,17 +799,17 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.StatementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 16, self.RULE_statement)
         try:
-            self.state = 143
+            self.state = 145
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [13, 17, 19, 35]:
+            if token in [14, 18, 20, 36]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 139
+                self.state = 141
                 self.options_statement()
-                self.state = 140
+                self.state = 142
                 self.statement()
                 pass
-            elif token in [11]:
+            elif token in [12]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -865,36 +871,36 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Options_statementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 18, self.RULE_options_statement)
         try:
-            self.state = 150
+            self.state = 152
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 145
+                self.state = 147
                 self.assign()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 146
+                self.state = 148
                 self.condition()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 147
+                self.state = 149
                 self.cycle()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 148
+                self.state = 150
                 self.f_call()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 149
+                self.state = 151
                 self.print_()
                 pass
 
@@ -943,21 +949,20 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 20, self.RULE_assign)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 152
+            self.state = 154
             localctx._ID = self.match(littleDuckParser.ID)
 
             program.variableDeclared((None if localctx._ID is None else localctx._ID.text))
 
-            self.state = 154
-            self.match(littleDuckParser.T__11)
-            self.state = 155
+            self.state = 156
+            self.match(littleDuckParser.T__12)
+            self.state = 157
             self.expresion()
 
             if program.variableDeclared((None if localctx._ID is None else localctx._ID.text)):
                 program.assignInsertQuad('=', program.stack_operands.pop(), None, (None if localctx._ID is None else localctx._ID.text))
-                program.clearTempVars()
 
-            self.state = 157
+            self.state = 159
             self.match(littleDuckParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1007,26 +1012,26 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 22, self.RULE_condition)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 159
-            self.match(littleDuckParser.T__12)
-            self.state = 160
-            self.match(littleDuckParser.T__13)
             self.state = 161
-            self.expresion()
+            self.match(littleDuckParser.T__13)
             self.state = 162
             self.match(littleDuckParser.T__14)
+            self.state = 163
+            self.expresion()
+            self.state = 164
+            self.match(littleDuckParser.T__15)
 
             if program.checkBoolExpression():
                 program.insertQuad('GOTOF', program.stack_operands.pop(), None, None)
                 program.stack_jumps.append(len(program.quadruples) - 1)
-            self.state = 164
+            self.state = 166
             self.body()
-            self.state = 165
+            self.state = 167
             self.else_()
 
             program.editQuad(2, len(program.quadruples), program.stack_jumps.pop())
 
-            self.state = 167
+            self.state = 169
             self.match(littleDuckParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1067,19 +1072,19 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.ElseContext(self, self._ctx, self.state)
         self.enterRule(localctx, 24, self.RULE_else)
         try:
-            self.state = 173
+            self.state = 175
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [16]:
+            if token in [17]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 169
-                self.match(littleDuckParser.T__15)
+                self.state = 171
+                self.match(littleDuckParser.T__16)
 
                 program.insertQuad('GOTO', None, None, None)
                 program.editQuad(2, len(program.quadruples), program.stack_jumps.pop())
                 program.stack_jumps.append(len(program.quadruples) - 1)
 
-                self.state = 171
+                self.state = 173
                 self.body()
                 pass
             elif token in [2]:
@@ -1133,24 +1138,24 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 26, self.RULE_cycle)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 175
-            self.match(littleDuckParser.T__16)
-            program.stack_jumps.append(len(program.quadruples))
             self.state = 177
-            self.body()
-            self.state = 178
             self.match(littleDuckParser.T__17)
+            program.stack_jumps.append(len(program.quadruples))
             self.state = 179
-            self.match(littleDuckParser.T__13)
+            self.body()
             self.state = 180
-            self.expresion()
+            self.match(littleDuckParser.T__18)
             self.state = 181
             self.match(littleDuckParser.T__14)
+            self.state = 182
+            self.expresion()
+            self.state = 183
+            self.match(littleDuckParser.T__15)
 
             if program.checkBoolExpression():
                 program.insertQuad('GOTOT', program.stack_operands.pop(), program.stack_jumps.pop(), None)
 
-            self.state = 183
+            self.state = 185
             self.match(littleDuckParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1195,15 +1200,15 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 28, self.RULE_f_call)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 185
-            self.match(littleDuckParser.ID)
-            self.state = 186
-            self.match(littleDuckParser.T__13)
             self.state = 187
-            self.opc_f_call()
+            self.match(littleDuckParser.ID)
             self.state = 188
             self.match(littleDuckParser.T__14)
             self.state = 189
+            self.opc_f_call()
+            self.state = 190
+            self.match(littleDuckParser.T__15)
+            self.state = 191
             self.match(littleDuckParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1248,17 +1253,17 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Opc_f_callContext(self, self._ctx, self.state)
         self.enterRule(localctx, 30, self.RULE_opc_f_call)
         try:
-            self.state = 195
+            self.state = 197
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [14, 26, 27, 32, 33, 35]:
+            if token in [15, 27, 28, 33, 34, 36]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 191
+                self.state = 193
                 self.expresion()
-                self.state = 192
+                self.state = 194
                 self.mas_f_call()
                 pass
-            elif token in [15]:
+            elif token in [16]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -1304,17 +1309,17 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Mas_f_callContext(self, self._ctx, self.state)
         self.enterRule(localctx, 32, self.RULE_mas_f_call)
         try:
-            self.state = 200
+            self.state = 202
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [7]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 197
+                self.state = 199
                 self.match(littleDuckParser.T__6)
-                self.state = 198
+                self.state = 200
                 self.opc_f_call()
                 pass
-            elif token in [15]:
+            elif token in [16]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -1361,15 +1366,15 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 34, self.RULE_print)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 202
-            self.match(littleDuckParser.T__18)
-            self.state = 203
-            self.match(littleDuckParser.T__13)
             self.state = 204
-            self.opc_print()
+            self.match(littleDuckParser.T__19)
             self.state = 205
             self.match(littleDuckParser.T__14)
             self.state = 206
+            self.opc_print()
+            self.state = 207
+            self.match(littleDuckParser.T__15)
+            self.state = 208
             self.match(littleDuckParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1418,26 +1423,23 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Opc_printContext(self, self._ctx, self.state)
         self.enterRule(localctx, 36, self.RULE_opc_print)
         try:
-            self.state = 216
+            self.state = 218
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [14, 26, 27, 32, 33, 35]:
+            if token in [15, 27, 28, 33, 34, 36]:
                 self.enterOuterAlt(localctx, 1)
-                print("hanlo")
-                self.state = 209
+                self.state = 211
                 self.expresion()
                 program.insertQuad('print', program.stack_operands.pop(), None, None)
-                program.clearTempVars()
-                self.state = 211
+                self.state = 213
                 self.mas_print()
                 pass
-            elif token in [34]:
+            elif token in [35]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 213
+                self.state = 215
                 localctx._CTE_STRING = self.match(littleDuckParser.CTE_STRING)
                 program.insertQuad('print', (None if localctx._CTE_STRING is None else localctx._CTE_STRING.text), None, None)
-                program.clearTempVars()
-                self.state = 215
+                self.state = 217
                 self.mas_print()
                 pass
             else:
@@ -1482,17 +1484,17 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Mas_printContext(self, self._ctx, self.state)
         self.enterRule(localctx, 38, self.RULE_mas_print)
         try:
-            self.state = 221
+            self.state = 223
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [7]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 218
+                self.state = 220
                 self.match(littleDuckParser.T__6)
-                self.state = 219
+                self.state = 221
                 self.opc_print()
                 pass
-            elif token in [15]:
+            elif token in [16]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -1551,28 +1553,28 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 40, self.RULE_funcs)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 223
-            self.match(littleDuckParser.T__19)
-            self.state = 224
+            self.state = 225
+            self.match(littleDuckParser.T__20)
+            self.state = 226
             localctx._ID = self.match(littleDuckParser.ID)
 
             program.newFunction((None if localctx._ID is None else localctx._ID.text))
 
-            self.state = 226
-            self.match(littleDuckParser.T__13)
-            self.state = 227
-            self.opc_funcs()
             self.state = 228
             self.match(littleDuckParser.T__14)
             self.state = 229
-            self.match(littleDuckParser.T__20)
+            self.opc_funcs()
             self.state = 230
-            self.vars_funcs()
+            self.match(littleDuckParser.T__15)
             self.state = 231
-            self.body()
-            self.state = 232
             self.match(littleDuckParser.T__21)
+            self.state = 232
+            self.vars_funcs()
             self.state = 233
+            self.body()
+            self.state = 234
+            self.match(littleDuckParser.T__22)
+            self.state = 235
             self.match(littleDuckParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1621,24 +1623,24 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Opc_funcsContext(self, self._ctx, self.state)
         self.enterRule(localctx, 42, self.RULE_opc_funcs)
         try:
-            self.state = 242
+            self.state = 244
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [35]:
+            if token in [36]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 235
+                self.state = 237
                 localctx._ID = self.match(littleDuckParser.ID)
 
                 program.declareNewVariable((None if localctx._ID is None else localctx._ID.text))
 
-                self.state = 237
-                self.match(littleDuckParser.T__5)
-                self.state = 238
-                self.type_()
                 self.state = 239
+                self.match(littleDuckParser.T__5)
+                self.state = 240
+                self.type_()
+                self.state = 241
                 self.mas_opc_funcs()
                 pass
-            elif token in [15]:
+            elif token in [16]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -1684,17 +1686,17 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Mas_opc_funcsContext(self, self._ctx, self.state)
         self.enterRule(localctx, 44, self.RULE_mas_opc_funcs)
         try:
-            self.state = 247
+            self.state = 249
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [7]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 244
+                self.state = 246
                 self.match(littleDuckParser.T__6)
-                self.state = 245
+                self.state = 247
                 self.next_opc_funcs()
                 pass
-            elif token in [15]:
+            elif token in [16]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -1749,16 +1751,16 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 46, self.RULE_next_opc_funcs)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 249
+            self.state = 251
             localctx._ID = self.match(littleDuckParser.ID)
 
             program.declareNewVariable((None if localctx._ID is None else localctx._ID.text))
 
-            self.state = 251
-            self.match(littleDuckParser.T__5)
-            self.state = 252
-            self.type_()
             self.state = 253
+            self.match(littleDuckParser.T__5)
+            self.state = 254
+            self.type_()
+            self.state = 255
             self.mas_opc_funcs()
         except RecognitionException as re:
             localctx.exception = re
@@ -1799,15 +1801,15 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Vars_funcsContext(self, self._ctx, self.state)
         self.enterRule(localctx, 48, self.RULE_vars_funcs)
         try:
-            self.state = 257
+            self.state = 259
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [5]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 255
+                self.state = 257
                 self.vars_()
                 pass
-            elif token in [10]:
+            elif token in [11]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -1857,19 +1859,20 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.CteContext(self, self._ctx, self.state)
         self.enterRule(localctx, 50, self.RULE_cte)
         try:
-            self.state = 263
+            self.state = 265
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [32]:
+            if token in [33]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 259
+                self.state = 261
                 localctx._CTE_INT = self.match(littleDuckParser.CTE_INT)
                 program.stack_operands.append(int((None if localctx._CTE_INT is None else localctx._CTE_INT.text)))
                 pass
-            elif token in [33]:
+            elif token in [34]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 261
+                self.state = 263
                 localctx._CTE_FLOAT = self.match(littleDuckParser.CTE_FLOAT)
+
                 program.stack_operands.append(float((None if localctx._CTE_FLOAT is None else localctx._CTE_FLOAT.text)))
                 pass
             else:
@@ -1919,10 +1922,10 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 52, self.RULE_expresion)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 265
+            self.state = 267
             self.exp()
             program.clearQuadrupleList('+')
-            self.state = 267
+            self.state = 269
             self.opc_expresion()
             program.clearQuadrupleList('eoe')
         except RecognitionException as re:
@@ -1964,40 +1967,40 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Opc_expresionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 54, self.RULE_opc_expresion)
         try:
-            self.state = 280
+            self.state = 282
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [23]:
+            if token in [24]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 270
-                self.match(littleDuckParser.T__22)
+                self.state = 272
+                self.match(littleDuckParser.T__23)
 
                 program.stack_operator.append('>')
 
-                self.state = 272
-                self.exp()
-                pass
-            elif token in [24]:
-                self.enterOuterAlt(localctx, 2)
-                self.state = 273
-                self.match(littleDuckParser.T__23)
-
-                program.stack_operator.append('<')
-
-                self.state = 275
+                self.state = 274
                 self.exp()
                 pass
             elif token in [25]:
-                self.enterOuterAlt(localctx, 3)
-                self.state = 276
+                self.enterOuterAlt(localctx, 2)
+                self.state = 275
                 self.match(littleDuckParser.T__24)
+
+                program.stack_operator.append('<')
+
+                self.state = 277
+                self.exp()
+                pass
+            elif token in [26]:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 278
+                self.match(littleDuckParser.T__25)
 
                 program.stack_operator.append('!=')
 
-                self.state = 278
+                self.state = 280
                 self.exp()
                 pass
-            elif token in [2, 7, 15]:
+            elif token in [2, 7, 16]:
                 self.enterOuterAlt(localctx, 4)
 
                 pass
@@ -2048,10 +2051,10 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 56, self.RULE_exp)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 282
+            self.state = 284
             self.termino()
             program.clearQuadrupleList('*')
-            self.state = 284
+            self.state = 286
             self.mas_exp()
         except RecognitionException as re:
             localctx.exception = re
@@ -2096,17 +2099,17 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Mas_expContext(self, self._ctx, self.state)
         self.enterRule(localctx, 58, self.RULE_mas_exp)
         try:
-            self.state = 290
+            self.state = 292
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [26, 27]:
+            if token in [27, 28]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 286
+                self.state = 288
                 self.exp_signo()
-                self.state = 287
+                self.state = 289
                 self.exp()
                 pass
-            elif token in [2, 7, 15, 23, 24, 25]:
+            elif token in [2, 7, 16, 24, 25, 26]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -2149,21 +2152,21 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Exp_signoContext(self, self._ctx, self.state)
         self.enterRule(localctx, 60, self.RULE_exp_signo)
         try:
-            self.state = 296
+            self.state = 298
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [26]:
+            if token in [27]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 292
-                self.match(littleDuckParser.T__25)
+                self.state = 294
+                self.match(littleDuckParser.T__26)
 
                 program.stack_operator.append('+')
 
                 pass
-            elif token in [27]:
+            elif token in [28]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 294
-                self.match(littleDuckParser.T__26)
+                self.state = 296
+                self.match(littleDuckParser.T__27)
 
                 program.stack_operator.append('-')
 
@@ -2215,9 +2218,9 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 62, self.RULE_termino)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 298
+            self.state = 300
             self.factor()
-            self.state = 299
+            self.state = 301
             self.mas_termino()
         except RecognitionException as re:
             localctx.exception = re
@@ -2262,17 +2265,17 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Mas_terminoContext(self, self._ctx, self.state)
         self.enterRule(localctx, 64, self.RULE_mas_termino)
         try:
-            self.state = 305
+            self.state = 307
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [28, 29]:
+            if token in [29, 30]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 301
+                self.state = 303
                 self.signo_factor()
-                self.state = 302
+                self.state = 304
                 self.termino()
                 pass
-            elif token in [2, 7, 15, 23, 24, 25, 26, 27]:
+            elif token in [2, 7, 16, 24, 25, 26, 27, 28]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -2315,19 +2318,19 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Signo_factorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 66, self.RULE_signo_factor)
         try:
-            self.state = 311
+            self.state = 313
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [28]:
+            if token in [29]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 307
-                self.match(littleDuckParser.T__27)
-                program.stack_operator.append('*')
-                pass
-            elif token in [29]:
-                self.enterOuterAlt(localctx, 2)
                 self.state = 309
                 self.match(littleDuckParser.T__28)
+                program.stack_operator.append('*')
+                pass
+            elif token in [30]:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 311
+                self.match(littleDuckParser.T__29)
                 program.stack_operator.append('/')
                 pass
             else:
@@ -2373,7 +2376,7 @@ class littleDuckParser ( Parser ):
         self.enterRule(localctx, 68, self.RULE_factor)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 313
+            self.state = 315
             self.opc_factor()
         except RecognitionException as re:
             localctx.exception = re
@@ -2390,6 +2393,7 @@ class littleDuckParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+            self._opc_signo = None # Opc_signoContext
 
         def expresion(self):
             return self.getTypedRuleContext(littleDuckParser.ExpresionContext,0)
@@ -2422,30 +2426,42 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Opc_factorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 70, self.RULE_opc_factor)
         try:
-            self.state = 324
+            self.state = 327
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [14]:
+            if token in [15]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 315
-                self.match(littleDuckParser.T__13)
+                self.state = 317
+                self.match(littleDuckParser.T__14)
 
                 program.stack_operator.append('(')
 
-                self.state = 317
+                self.state = 319
                 self.expresion()
-                self.state = 318
-                self.match(littleDuckParser.T__14)
+                self.state = 320
+                self.match(littleDuckParser.T__15)
 
                 program.clearQuadrupleList(')')
 
                 pass
-            elif token in [26, 27, 32, 33, 35]:
+            elif token in [27, 28, 33, 34, 36]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 321
-                self.opc_signo()
-                self.state = 322
+                self.state = 323
+                localctx._opc_signo = self.opc_signo()
+                self.state = 324
                 self.opc_factor_prime()
+
+                print("si")
+                print((None if localctx._opc_signo is None else self._input.getText(localctx._opc_signo.start,localctx._opc_signo.stop)))
+                if (None if localctx._opc_signo is None else self._input.getText(localctx._opc_signo.start,localctx._opc_signo.stop)) == "-":
+                    op1 = program.stack_operands.pop()
+                    print(op1)
+                    type1 = type(op1).__name__
+                    if type1 == "str":
+                        type1 = program.getVariable(program.currentLevel, op1).vtype
+                    print(type1)
+                    program.insertQuad('*', op1, -1, program.newTempVar('*', type1, "int"))
+
                 pass
             else:
                 raise NoViableAltException(self)
@@ -2489,15 +2505,15 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Opc_signoContext(self, self._ctx, self.state)
         self.enterRule(localctx, 72, self.RULE_opc_signo)
         try:
-            self.state = 328
+            self.state = 331
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [26, 27]:
+            if token in [27, 28]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 326
+                self.state = 329
                 self.signo()
                 pass
-            elif token in [32, 33, 35]:
+            elif token in [33, 34, 36]:
                 self.enterOuterAlt(localctx, 2)
 
                 pass
@@ -2542,9 +2558,9 @@ class littleDuckParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 330
+            self.state = 333
             _la = self._input.LA(1)
-            if not(_la==26 or _la==27):
+            if not(_la==27 or _la==28):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2592,21 +2608,21 @@ class littleDuckParser ( Parser ):
         localctx = littleDuckParser.Opc_factor_primeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 76, self.RULE_opc_factor_prime)
         try:
-            self.state = 335
+            self.state = 338
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [35]:
+            if token in [36]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 332
+                self.state = 335
                 localctx._ID = self.match(littleDuckParser.ID)
 
                 if program.variableDeclared((None if localctx._ID is None else localctx._ID.text)):
                     program.stack_operands.append((None if localctx._ID is None else localctx._ID.text))
 
                 pass
-            elif token in [32, 33]:
+            elif token in [33, 34]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 334
+                self.state = 337
                 self.cte()
                 pass
             else:

@@ -1,0 +1,13 @@
+program quad;
+
+var a, b, c: int; d: bool;
+main {
+    if (a != b) {
+        if (a > b) {
+            b = a;
+        } else {
+            a = b;
+        };
+    };
+}
+end

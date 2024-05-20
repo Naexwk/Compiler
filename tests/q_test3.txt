@@ -1,0 +1,9 @@
+program quad;
+
+var a, b, c: int; d: bool;
+main {
+    do {
+        a = a + 1;
+    } while (a < b);
+}
+end

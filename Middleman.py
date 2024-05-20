@@ -72,7 +72,7 @@ class SemanticCube:
             ["error", "error", "error", "error"]
         ],
         "=" : [
-            ["int", "error", "error", "error"],
+            ["int", "int", "error", "error"],
             ["error", "float", "error", "error"],
             ["error", "error", "string", "error"],
             ["error", "error", "error", "bool"]
@@ -109,10 +109,10 @@ class quad:
         self.alloc = _alloc
     
     def __repr__(self):
-        return "(" + self.operation + "," + str(self.op1) + "," + str(self.op2) + "," + str(self.result) + "," + str(self.alloc) + ")"
+        return "(" + self.operation + "," + str(self.op1) + "," + str(self.op2) + "," + str(self.result)  + ")"
 
     def __str__(self):
-        return "(" + self.operation + "," + str(self.op1) + "," + str(self.op2) + "," + str(self.result) + "," + str(self.alloc) + ")"
+        return "(" + self.operation + "," + str(self.op1) + "," + str(self.op2) + "," + str(self.result) + ")"
     
     def edit(self, paramIdx, value):
         if paramIdx == 0:
@@ -226,14 +226,14 @@ class Middleman:
             return ['<', '>', '!=', '+', '-', '(']
         
         if _op == 'eoe':
-            return ['$']
+            return ['$', '(']
         
     def checkBoolExpression(self):
-        if type(program.stack_operands[-1]) is not str:
-            program.HandleError("Type error")
+        if type(self.stack_operands[-1]) is not str:
+            self.HandleError("Type error")
             return False
-        if program.getVariable(program.currentLevel, program.stack_operands[-1]).vtype != "bool":
-            program.HandleError("Type error")
+        if self.getVariable(self.currentLevel, self.stack_operands[-1]).vtype != "bool":
+            self.HandleError("Type error")
             return False
         
         return True
