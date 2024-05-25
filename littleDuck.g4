@@ -11,7 +11,7 @@ program.variableTable["owner"] = $ID.text
  ';' opc_vars optional_funcs 'main' body 'end'
 {
 program.insertQuad('end', None, None, None)
-print("Lista de cuádruplos: \n", program.quadruples)
+program.Execute()
 };
 
 opc_vars: 

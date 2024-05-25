@@ -1,3 +1,5 @@
+from VirtualMachine import *
+
 class var:
     id = ""
     vtype = ""
@@ -99,14 +101,12 @@ class quad:
     op1 = 0
     op2 = 0
     result = 0
-    alloc = 0
 
-    def __init__(self, _operation, _op1, _op2, _result, _alloc):
+    def __init__(self, _operation, _op1, _op2, _result):
         self.operation = _operation
         self.op1 = _op1
         self.op2 = _op2
         self.result = _result
-        self.alloc = _alloc
     
     def __repr__(self):
         return "(" + self.operation + "," + str(self.op1) + "," + str(self.op2) + "," + str(self.result)  + ")"
@@ -135,6 +135,7 @@ class Middleman:
     quadruples = []
     
     tempVarDeclarations = []
+    constDeclarations = {}
 
     stack_operator = []
     stack_operands = []
@@ -144,6 +145,8 @@ class Middleman:
     currentType = "int"
     currentAlloc = 0
     currentTempId = 0
+    currentConstId = 0
+
 
     variable = 0
 
@@ -179,7 +182,7 @@ class Middleman:
     
     def variableDeclared(self, varName):
         if not self.variableExists(varName):
-            self.HandleError(varName + "does not exist in current context")
+            self.HandleError(varName + " does not exist in current context")
             return False
         
         return True
@@ -265,11 +268,41 @@ class Middleman:
             self.HandleError("Operation not valid")
             return None
         
+    def newConstVar(self, value):
+        vtype = "int"
+        if isinstance(value, float):
+            vtype = "float"
+        self.currentConstId += 1
+        name = "$c" + str(self.currentConstId)
+        self.constDeclarations[value] = name
+        temp = var(name,vtype,self.currentAlloc)
+        self.currentAlloc += 1
+        self.variableTable["global"].append(temp)
+        return temp.alloc
+
+        
     def clearTempVars(self):
         self.currentTempId = 0
 
+    def lookUpAlloc(self, x):
+        if x == None:
+            return None
+        for i in self.variableTable[self.currentLevel]:
+            if i.id == x:
+                return i.alloc
+            
+        if self.currentLevel != "global":
+            for i in self.variableTable["global"]:
+                if i.id == x:
+                    return i.alloc
+        if x in self.constDeclarations:
+            return self.constDeclarations[x]
+        
+        newAlloc = self.newConstVar(x)
+        return newAlloc
+
     def insertQuad(self, oper, op1, op2, res):
-        self.quadruples.append(quad(oper, op1, op2, res, len(program.quadruples)))
+        self.quadruples.append(quad(oper, self.lookUpAlloc(op1), self.lookUpAlloc(op2), self.lookUpAlloc(res)))
 
     def assignInsertQuad(self, oper, op1, op2, res):
         type1 = type(op1).__name__
@@ -284,17 +317,25 @@ class Middleman:
         if vtype == "error":
             self.HandleError("Type error")
             return
-        self.quadruples.append(quad(oper, op1, op2, res, len(program.quadruples)))
+        self.quadruples.append(quad(oper, self.lookUpAlloc(op1), self.lookUpAlloc(op2), self.lookUpAlloc(res)))
         
 
     def editQuad(self, paramIdx, value, quadId):
         t = self.quadruples[quadId].edit(paramIdx, value)
         self.quadruples[quadId] = t
+
+    def Execute(self):
+        memoria = [0] * self.currentAlloc
+        for value, alloc in self.constDeclarations.items():
+            for i in self.variableTable["global"]:
+                if i.id == alloc:
+                    memoria[i.alloc] = value
+                    break
+
+        run(memoria, self.quadruples, 0, )
         
     def HandleError(self, message):
-
         raise Exception("Middleman: " + message)
-
 
 program = Middleman("")
     

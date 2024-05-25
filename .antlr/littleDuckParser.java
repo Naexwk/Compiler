@@ -162,7 +162,7 @@ public class littleDuckParser extends Parser {
 			match(T__3);
 
 			program.insertQuad('end', None, None, None)
-			print("Lista de cuádruplos: \n", program.quadruples)
+			program.Execute()
 
 			}
 		}

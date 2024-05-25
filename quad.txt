@@ -1,8 +1,10 @@
-program quad;
-
-var a, b, c: int;
-
-main {
-    a =  -1;
-}
-end
+program test;
+     var a, b: int;
+    main {
+        a = 0;
+        b = 10;
+        if (a < b) {
+            print("xd");
+        };
+    } 
+    end
