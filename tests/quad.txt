@@ -1,0 +1,10 @@
+program quad;
+
+var a, b, c: float; d: bool;
+main {
+    a = 5;
+    a = a / 0;
+    print(a);
+}
+end
+

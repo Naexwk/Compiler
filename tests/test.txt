@@ -16,8 +16,6 @@ main {
     a = 0;
     b = 4;
     c = 2;
-    func_suma (a, b);
-    func_resta (b, c);
 }
 
 end

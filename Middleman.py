@@ -32,9 +32,9 @@ class var:
 class SemanticCube:
     matrix = {
         "+" : [
-            ["int", "float", "string", "error"],
-            ["float", "float", "string", "error"],
-            ["string", "string", "string", "error"],
+            ["int", "float", "error", "error"],
+            ["float", "float", "error", "error"],
+            ["error", "error", "error", "error"],
             ["error", "error", "error", "error"]
         ],
         "-" : [
@@ -70,7 +70,7 @@ class SemanticCube:
         "!=" : [
             ["bool", "bool", "error", "error"],
             ["bool", "bool", "error", "error"],
-            ["error", "error", "error", "error"],
+            ["error", "error", "bool", "error"],
             ["error", "error", "error", "error"]
         ],
         "=" : [
@@ -147,13 +147,13 @@ class Middleman:
     currentTempId = 0
     currentConstId = 0
 
-
+    pointer = 0
     variable = 0
 
     def __init__(self, ownerName):
         self.variableTable["owner"] = ownerName
         self.variableTable["global"] = []
-        self.currentLevel = "global"
+        self.currentLeloovel = "global"
 
     def clearTempVarDeclaration(self):
         for element in self.tempVarDeclarations:
@@ -285,18 +285,21 @@ class Middleman:
         self.currentTempId = 0
 
     def lookUpAlloc(self, x):
+            
         if x == None:
             return None
         for i in self.variableTable[self.currentLevel]:
             if i.id == x:
                 return i.alloc
-            
+
         if self.currentLevel != "global":
             for i in self.variableTable["global"]:
                 if i.id == x:
                     return i.alloc
+                
+        
         if x in self.constDeclarations:
-            return self.constDeclarations[x]
+            return self.lookUpAlloc(self.constDeclarations[x])
         
         newAlloc = self.newConstVar(x)
         return newAlloc
@@ -332,7 +335,7 @@ class Middleman:
                     memoria[i.alloc] = value
                     break
 
-        run(memoria, self.quadruples, 0, )
+        run(memoria, self.quadruples, self.pointer)
         
     def HandleError(self, message):
         raise Exception("Middleman: " + message)

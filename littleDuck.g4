@@ -8,7 +8,7 @@ programa: 'program' ID
 {
 program.variableTable["owner"] = $ID.text
 }
- ';' opc_vars optional_funcs 'main' body 'end'
+ ';' opc_vars optional_funcs 'main' {program.pointer = len(program.quadruples)} body 'end'
 {
 program.insertQuad('end', None, None, None)
 program.Execute()
@@ -85,7 +85,7 @@ print: 'print' '(' opc_print ')' ';';
 
 opc_print: expresion 
 {program.insertQuad('print', program.stack_operands.pop(), None, None)}
- mas_print | CTE_STRING {program.insertQuad('print', $CTE_STRING.text, None, None)} mas_print;
+ mas_print | CTE_STRING {program.insertQuad('print', $CTE_STRING.text[1:-1], None, None)} mas_print;
 
 mas_print: ',' opc_print | ;
 

@@ -33,7 +33,7 @@ def solve(quad):
         memoria[res] = memoria[op1]
 
     if oper == "print":
-        print(memoria[op1])
+        print(memoria[op1], end ="")
 
     if oper == "GOTO":
         pointer = op2
